@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ActionBar.Solid.Kanquraan" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="background">@drawable/ab_solid_kanquraan</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_kanquraan</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_kanquraan</item>
+        <item name="progressBarStyle">@style/ProgressBar.Kanquraan</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Kanquraan" parent="@style/Widget.Sherlock.Light.ActionBar">
+        <item name="background">@drawable/ab_transparent_kanquraan</item>
+        <item name="progressBarStyle">@style/ProgressBar.Kanquraan</item>
+    </style>
+
+    <style name="PopupMenu.Kanquraan" parent="@android:Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/dialog_shape_top_3</item>
+        <item name="android:dropDownSelector">@drawable/dialog_shape_top_3</item>
+        <item name="android:textColor">@color/appGreen</item>
+        <item name="background">@drawable/ab_solid_kanquraan</item>
+    </style>
+
+    <style name="DropDownListView.Kanquraan" parent="@style/Widget.Sherlock.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_kanquraan</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Kanquraan" parent="@style/Widget.Sherlock.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_kanquraan</item>
+    </style>
+
+    <style name="DropDownNav.Kanquraan" parent="@style/Widget.Sherlock.Light.Spinner.DropDown.ActionBar">
+        <item name="android:background">@drawable/spinner_background_ab_kanquraan</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_kanquraan</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_kanquraan</item>
+    </style>
+
+    <style name="ProgressBar.Kanquraan" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_kanquraan</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Kanquraan" parent="@style/Widget.Sherlock.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_kanquraan</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Kanquraan.Widget" parent="@style/Theme.Sherlock">
+        <item name="popupMenuStyle">@style/PopupMenu.Kanquraan</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Kanquraan</item>
+    </style>
+
+    <style name="NotificationText">
+      <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+    
+    <style name="NotificationTitle">
+      <item name="android:textColor">?android:attr/textColorPrimary</item>
+      <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="translation_sura_title">
+        <item name="android:textColor">@color/translation_hdr_color</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TranslationText">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TranslationText.Highlighted">
+        <item name="android:textColor">@color/translation_highlight</item>
+    </style>
+
+    <!--<style name="QuranAndroid" parent="Theme.Sherlock">Sherlock-->
+    <!--</style>-->
+
+    <style name="TranslationText.NightMode">
+        <item name="android:background">@android:color/black</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TranslationText.NightMode.Highlighted">
+        <item name="android:textColor">@color/translation_highlight</item>
+    </style>
+
+    <style name="SearchResult">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SearchResult.Location">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="PanelLabel">
+        <item name="android:textColor">@color/translation_highlight</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="QuranAndroid" parent="@style/Theme.Sherlock">
+        <item name="actionBarItemBackground">@drawable/selectable_background_kanquraan</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Kanquraan</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Kanquraan</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Kanquraan</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Kanquraan</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Kanquraan</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_kanquraan</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_kanquraan</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Kanquraan</item>
+        <item name="android:panelBackground">@drawable/cab_background_top_kanquraan</item>
+    </style>
+</resources>

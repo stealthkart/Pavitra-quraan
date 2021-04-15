@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="font_names">
+        <item>Device Default</item>
+        <item>Naskh</item>
+        <item>Me Quran</item>
+        <item>Traditional Arabic</item>
+        <item>Xb Zar</item>
+        <item>Hafs</item>
+    </string-array>
+</resources>

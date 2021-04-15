@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ಪವಿತ್ರ ಕುರ್ ಆನ್</string>
+    <string name="downloadPrompt_title">ಅರಬಿ ಪುಟಗಳನ್ನು ಡೌನ್ ಲೋಡ್ ಮಾಡುವಿರಾ?</string>
+    <string name="downloadPrompt">ನೀವು ಈಗ ಕುರ್ ಆನಿನ ಮೂಲ ಅರಬಿ ಪುಟಗಳನ್ನು ಡೌನ್ ಲೋಡ್ ಮಾಡಬೇಕಾಗಿದೆ.
+ಇಲ್ಲದಿದ್ದರೆ, ನಿಮಗೆ ಅರಬಿ ಪುಟಗಳನ್ನು ವೀಕ್ಷಿಸಲಾಗುವುದಿಲ್ಲ. ನೀವು ಈಗ ಡೌನ್ ಲೋಡ್ ಮಾಡಲು ಬಯಸುವಿರಾ?
+	</string>
+    <!-- not used -->
+    <string name="downloadTabletPrompt">ನಾವು ಇತ್ತೀಚೆಗೆ ಟ್ಯಾಬ್ಲೆಟ್ ಗಾಗಿ ಸುಧಾರಿತ ಅರಬಿ ಪುಟಗಳನ್ನು ಸೇರಿಸಿದ್ದೇವೆ. ನೀವು ಈಗ ಡೌನ್ಲೋಡ್ ಮಾಡಲು ಬಯಸುವಿರಾ?</string>
+
+    <string name="downloadImportantPrompt">ಕುರ್ ಆನಿನ ಸೂಕ್ತಿಗಳನ್ನು ಶೇರ್ ಮಾಡಲು ಒಂದು ಸಣ್ಣ ಅಪ್ಡೇಟ್  ಮಾಡಬೇಕಾಗಿದೆ. ನೀವು ಈಗ ಅಪ್ಡೇಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?</string>
+    <string name="text_size">ಫಾಂಟ್ ಗಾತ್ರ(Text size)</string>
+    <string name="abt_us">ಪವಿತ್ರ ಕುರ್ ಆನ್  </string>
+    <string name="downloadPrompt_ok">ಹೌದು </string>
+    <string name="downloadPrompt_no">ಇಲ್ಲ</string>
+    <string name="downloading_title">ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ&#8230;</string>
+    <string name="downloading_message">ಫೈಲ್ಗಳನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡುವವರೆಗೆ ನಿರೀಕ್ಷಿಸಿ </string>
+    <string name="extracting_title">ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ&#8230;</string>
+    <!-- not used now, use it later -->
+    <string name="menu_about">ಪವಿತ್ರ ಕುರ್ ಆನ್  ಬಗ್ಗೆ</string>
+    <!-- not used -->
+    <string name="menu_settings">ಸೆಟ್ಟಿಂಗ್</string>
+    <!-- not used -->
+    <string name="menu_jump_last_page">ಕೊನೆಯ ಪುಟ</string>
+    <!-- not used -->
+    <string name="menu_tags">Tags</string>
+
+    <string name="menu_bookmarks">ಗುರುತು(Bookmark)</string>
+    <string name="menu_bookmarks_page">ಪುಟ ಗುರುತು(Bookmark)</string>
+    <string name="menu_bookmarks_ayah">ಸೂಕ್ತಿ ಗುರುತು(Bookmark)</string>
+    <string name="menu_sort">ವ್ಯವಸ್ಥಿತವಾಗಿ ಜೋಡಿಸು</string>
+    <string name="menu_sort_date">ದಿನಾಂಕ ಆಧಾರಿತ</string>
+    <string name="menu_sort_location">ಪುಟ ಆಧಾರಿತ</string>
+    <string name="menu_sort_alphabetical">ವರ್ಣಮಾಲೆ ಆಧಾರಿತ</string>
+    <string name="menu_translation"> ಕನ್ನಡ ಮತ್ತು ಅರಬಿ</string>
+    <string name="menu_kannada">ಕನ್ನಡ ಅರ್ಥಾನುವಾದ</string>
+    <string name="menu_back_to_page">ಕುರ್ ಆನ್</string>
+    <string name="menu_help">ಸಹಾಯ</string>
+    <string name="menu_search">ಹುಡುಕಿ</string>
+    <string name="menu_get_translations">Get Translations</string>
+    <string name="menu_jump">ಹೋಗಿ(Goto)</string>
+    <string name="font_menu">ಅರಬಿ ಫಾಂಟ್ ಆಯ್ಕೆ</string>
+    <string name="gotoPage">ಪುಟಕ್ಕೆ ಹೋಗಿ</string>
+    <string name="cancel">ರದ್ದುಮಾಡಿ</string>
+    <string name="developedBy">apps@scalosphere.com</string>
+    <string name="copyRights">&#169; Scalosphere Computing LLP</string>
+    <string name="aboutUs">ಪವಿತ್ರ ಕುರ್ ಆನ್  ಬಗ್ಗೆ</string>
+      <string name="aboutUsContent">ಪವಿತ್ರ ಕುರ್ ಆನ್,ಇದು ಆಂಡ್ರಾಯ್ಡ್ ಸ್ಮಾರ್ಟ್ ಫೋನ್ ಗಳಿಗಾಗಿರುವ ಉಚಿತ ಕನ್ನಡ ಕುರ್ ಆನ್ ಆಪ್ಲಿಕೇಷನ್ ಆಗಿದೆ.ಮೂಲ ಅರಬಿ ಪುಟಗಳನ್ನು &lt;a href="http://tanzil.net">tanzil.net&lt;/a> ನಿಂದ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ ಮತ್ತು ಕನ್ನಡ ಅರ್ಥಾನುವಾದವನ್ನು ಮುಹಮ್ಮದ್ ಹಂಝಾ ಪುತ್ತೂರು ರವರು ಭಾಷಾಂತರಿಸಿದ, ಉಮರ್ ಇಬ್ನ್ ಅಹ್ಮದ್ ಮದೀನಿ, ಅಹ್ಮದ್ ಎಸ್ ಎಮ್ ಮತ್ತು ಅಬೂಬಕರ್ ನಝೀರ್ ಸಲಫಿಯವರು ಪರಿಶೀಲಿಸಿದ &lt;b>\'ಪವಿತ್ರ ಕುರ್ ಆನ್, ಸಂಪೂರ್ಣ ಕನ್ನಡ ಅರ್ಥಾನುವಾದ\' (ಪ್ರಕಾಶಕರು :ಸಲಫಿ ಪಬ್ಲಿಷಿಂಗ್ ಹೌಸ್ ಮಂಗಳೂರು)&lt;/b> ದಿಂದ ತೆಗೆದುಕೊಳ್ಳಲಾಗಿದೆ.
+      &lt;br/>&lt;br/>&lt;b> &lt;a href="https://m.facebook.com/QuranmatthuHadeesVchanagalu"> \'ಕುರ್ ಆನ್ ಮತ್ತು ಹದೀಸ್ ವಚನಗಳು\' ಫೇಸ್ ಬುಕ್ ಪುಟ &lt;/a> ದ ,ಕನ್ನಡ ಕುರ್ ಆನ್ ಆಪ್ಲಿಕೇಷನ್ ಮತ್ತು منهج الأنبياء ವಾಟ್ಸ್ ಆಪ್ ಗ್ರೂಪಿನ ನಿರ್ವಾಹಕರು ಮತ್ತು ಸದಸ್ಯರಿಗೆ ವಿಶೇಷವಾಗಿ ಅಲ್ಲಾಹು ಶ್ರೇಷ್ಟವಾದದ್ದನ್ನು ದಯಪಾಲಿಸಲಿ.&lt;/b> &lt;br/>
+      ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳನ್ನು  apps@scalosphere.com ಗೆ ಇಮೇಲ್ ಮಾಡಬಹುದು. &lt;br/>&#169; Scalosphere Computing LLP </string>
+    <string name="help_title">ಪುನರಾವರ್ತಿತ ಪ್ರಶ್ನೆಗಳು</string>
+    <string name="test">&lt;sup> 3 &lt;/sup></string>
+    <string name="help">
+        &lt;b>How do I play audio?&lt;/b>
+        &lt;br/>Open any ಕುರ್ ಆನ್ ಪುಟ.  Tap on the screen once.  At the bottom, you will notice
+        a play button and some text with the name of a qari.  Click the name of the qari to
+        choose a different qari.  Click play to ಡೌನ್ ಲೋಡ್  and play the ಈಗ ಇರುವ ಪುಟ or sura.
+        &lt;br/>
+        &lt;br/>&lt;b>How do I view the translation?&lt;/b>
+        &lt;br/>Open any ಕುರ್ ಆನ್ ಪುಟ.  Tap on the screen once.  In the top, you will notice a
+        globe icon (or, if you don\'t see it, you may see an icon with three square dots) - click
+        this and choose translation to view the translation.
+        &lt;br/>
+        If you do not have any translations downloaded, it will take
+        you to a screen where you can ಡೌನ್ ಲೋಡ್  translations.  Choose and ಡೌನ್ ಲೋಡ್  a translation,
+        then return back and tap the globe icon again to view the translation.
+        &lt;br/>
+        &lt;br/>&lt;b>How do I ಬುಕ್ಮಾರ್ಕ್ a ಪುಟ?&lt;/b>
+        &lt;br/>Open any ಕುರ್ ಆನ್ ಪುಟ.  Tap on the screen once.  In the top right, you will see a
+        star icon.  Tap the star icon to ಬುಕ್ಮಾರ್ಕ್ it (the color will turn solid white).  Tap the star icon
+        again to remove the ಬುಕ್ಮಾರ್ಕ್.
+        &lt;br/>
+        &lt;br/>&lt;b>How do I make the text larger?&lt;/b>
+        &lt;br/>For the Arabic pages, hold your phone in landscape.  This makes the text larger.
+        For translations, go to settings and choose translation size.
+        &lt;br/>
+        &lt;br/>&lt;b>How do I share an ayah?&lt;/b>
+        &lt;br/>While on any Arabic ಪುಟ, press and hold on any ayah to get a menu where you can
+        choose to ಬುಕ್ಮಾರ್ಕ್ it, tag it, share or copy the ayah to the clipboard, see the translation,
+        or listen to its recitation.&lt;br/>
+        &lt;br/>&lt;b>Malayalm/Tamil/Bangla/Urdu fonts don\'t work!&lt;/b>
+        &lt;br/>Unfortunately, Android versions before 4.0 do not support these fonts, and there is
+        little we can do to help with this.
+    </string>
+	<string name="search_hint">ಹುಡುಕಿ...</string>
+	<string name="quranSearchType">ಸೂಕ್ತಿ ಹುಡುಕಿ...</string>
+
+    <!-- Shown above search results when we receive a search request. -->
+    <plurals name="search_results">
+        <item quantity="one">\"%1$s\" ಒಂದು ಸೂಕ್ತಿಯಲ್ಲಿ ಸಿಕ್ಕಿತು : </item>
+        <item quantity="other">\"%1$s\" ಸಿಕ್ಕಿದ ಸೂಕ್ತಿಗಳು :  %2$d</item>
+    </plurals>
+
+    <!-- Search messages -->
+    <string name="found_in_sura">ಸಿಕ್ಕಿದ ಅಧ್ಯಾಯ</string>
+    <string name="no_results"> \"%s\" ಯಾವ ಸೂಕ್ತಿಯಲ್ಲೂ ಸಿಕ್ಕಿಲ್ಲ</string>
+    <string name="no_active_translation">You have no active translation set. Please set an active translation first and then search again.</string>
+    <string name="translation_settings">Translation Settings</string>
+    <string name="no_arabic_search_available">You have not downloaded the Arabic search pack.  Please ಡೌನ್ ಲೋಡ್  it and try your search again.</string>
+    <string name="get_arabic_search_db">Get Arabic Search Database</string>
+    <string name="no_kannada_search_available">You have not downloaded the Kannada search pack.  Please ಡೌನ್ ಲೋಡ್  it and try your search again.</string>
+    <string name="get_kannada_search_db">Get Kannada Search Database</string>
+        
+    <!-- Quran Preference Activity -->
+    <string name="prefs_category_navigation">Navigation</string>
+    <string name="prefs_volume_key_navigation_title">Volume key navigation</string>
+    <string name="prefs_volume_key_navigation_summary">Navigate between pages using volume keys</string>
+    <string name="prefs_category_reading">Reading Preferences</string>
+    <string name="prefs_category_translation">Translation Preferences</string>
+    <string name="prefs_category_display_settings">Display Settings</string>
+    <string name="prefs_use_arabic_title">Arabic Mode</string>
+    <string name="prefs_use_arabic_summary_on">Application will be localized to Arabic (restart required)</string>
+    <string name="prefs_use_arabic_reshaper_title">Use Arabic Reshaper</string>
+    <string name="prefs_use_arabic_reshaper_summary_on">If your Arabic text is backwards, uncheck this option.</string>
+    <string name="prefs_use_arabic_reshaper_summary_off">If your Arabic text is not joined, check this option to fix it.</string>
+    <string name="prefs_new_background_title">New background</string>
+    <string name="prefs_lock_orientation_title">Lock screen orientation</string>
+    <string name="prefs_lock_orientation_summary_on">ಕುರ್ ಆನ್ ಪುಟ will be in fixed orientation mode</string>
+    <string name="prefs_lock_orientation_summary_off">Adaptive to current orientation mode</string>
+    <string name="prefs_landscape_orientation_title">Landscape orientation</string>
+    <string name="prefs_landscape_orientation_summary_on">Landscape orientation will be used</string>
+    <string name="prefs_landscape_orientation_summary_off">Portrait orientation will be used</string>
+    <string name="prefs_night_mode_title">Night mode</string>
+    <string name="prefs_night_mode_summary">Dark background and light fonts will be used</string>
+    <string name="prefs_night_mode_text_brightness_title">Text Brightness</string>
+    <string name="prefs_night_mode_text_brightness_summary">Brightness of the text when night mode is active</string>
+    <string name="prefs_overlay_page_info_title">Show ಪುಟ info (beta)</string>
+    <string name="prefs_overlay_page_info_summary">Overlay ಪುಟ number, sura name, and juz\' number while reading</string>
+    <string name="prefs_display_marker_title">Display marker popups</string>
+    <string name="prefs_display_marker_summary">Display popup on reaching juz\', hizb, etc.</string>
+    <string name="prefs_highlight_bookmarks_title">Highlight ಗುರುತು(Bookmark)</string>
+    <string name="prefs_highlight_bookmarks_summary">Highlight ಗುರುತು(Bookmark) ayahs while reading</string>
+    <string name="prefs_translation_text_title">Translation text size</string>
+    <string name="prefs_translations">Translations</string>
+    <string name="prefs_translations_summary">ಡೌನ್ ಲೋಡ್  and manage translations</string>
+    <string name="prefs_ayah_before_translation_title">Ayah before Translation</string>
+    <string name="prefs_ayah_before_translation_summary">Show ayah in Arabic above the translation</string>
+    <string name="prefs_category_download">ಡೌನ್ ಲೋಡ್ Options</string>
+    <string name="prefs_streaming_title">Streaming</string>
+    <string name="prefs_streaming_summary">Stream audio when possible (non-gapless audio only).</string>
+    <string name="prefs_download_amount_title">ಡೌನ್ ಲೋಡ್  Amount</string>
+    <string name="prefs_download_amount_summary">Preferred ಡೌನ್ ಲೋಡ್  amount for non-gapless audio.</string>
+    <string name="downloaded_translations">Downloaded</string>
+    <string name="download_kan_db">ಕನ್ನಡ ಅರ್ಥಾನುವಾದ</string>
+    <string name="download_arabic_db">النص العربي </string>
+    <string name="available_translations">Available for ಡೌನ್ಲೋಡ್</string>
+    <string name="remove_button">ತೆಗೆದುಹಾಕಿ</string>
+    <string name="dialog_ok">ಓಕೆ</string>
+    <string name="prefs_advanced_settings_title">Advanced Settings</string>
+    <string name="prefs_app_location_title">ಕುರ್ ಆನ್ Data Directory</string>
+    <string name="prefs_app_location_summary">Choose where to store ಕುರ್ ಆನ್ files.</string>
+    <string name="prefs_sdcard_internal">Internal Storage</string>
+    <string name="prefs_sdcard_external">External SD Card</string>
+    <string name="prefs_sdcard_auto">Auto</string>
+    <string name="prefs_app_size">Current data size is</string>
+    <string name="prefs_calculating_app_size">Calculating App Size</string>
+    <string name="prefs_copying_app_files">Copying App files</string>
+    <string name="prefs_err_moving_app_files">Failed to move app files</string>
+    <string name="prefs_no_enough_space_to_move_files">Insufficient space to move app files</string>
+    <string name="prefs_megabytes">MB</string>
+    <string name="prefs_tablet_mode_title">Tablet Mode</string>
+    <string name="prefs_tablet_mode_enabled">In landscape, two pages will appear side by side.</string>
+    <string name="prefs_tablet_mode_disabled">In landscape, only one ಪುಟ will appear.</string>
+
+    <string name="kitkat_external_title">ಎಚ್ಚರಿಕೆ</string>
+    <string name="kitkat_external_message">ಆಂಡ್ರಾಯ್ಡ್ ಕಿಟ್ ಕ್ಯಾಟ್ ಇತಿಮಿತಿಗಳ ಕಾರಣದಿಂದ ..
+ನೀವು ಕುರ್ ಆನ್ ಅನ್ನು ನಿಮ್ಮ ಬಾಹ್ಯ SD ಕಾರ್ಡ್ ನಲ್ಲಿಇರಿಸಲು ಆರಿಸಿ ಮತ್ತು ನಂತರ  ಕುರ್ ಆನ್ ಕನ್ನಡವನ್ನು ಅನ್ ಇನ್ಸ್ಟಾಲ್ ಮಾಡಿದರೆ, ಎಲ್ಲಾ ಕುರ್ ಆನ್
+ಪುಟಗಳು ಅಳಿಸಲ್ಪಡುವುವು. ಮತ್ತು ನೀವು ಮತ್ತೆ ಅವುಗಳನ್ನು ಡೌನ್ ಲೋಡ್ ಮಾಡಬೇಕಾಗಬಹುದು.  ಖಚಿತವಾಗಿ ನೀವು ಬಾಹ್ಯ SD ಕಾರ್ಡ್ ಬಳಸಲು ಬಯಸುವಿರಾ?
+</string>
+    <!-- Preferences End -->
+
+    <!-- translation updates -->
+    <string name="update_available">ಅಪ್ಡೇಟ್ ಲಭ್ಯವಿದೆ</string>
+    <string name="translation_updates_available">An update is available for some of your translations.  Visit the translations screen now?</string>
+    <string name="translation_dialog_yes">ಹೌದು </string>
+    <string name="translation_dialog_later">ನಂತರ</string>
+
+    <!-- used for screen readers -->
+    <string name="border">ಸೀಮೆ</string>
+    
+    <!-- End Number picker Strings -->
+    <string name="quran_rob3">¼</string>
+    <string name="quran_nos">½</string>
+    <string name="quran_talt_arb3">¾</string>
+    <string name="quran_hizb">ಹಿಝ್ಬ್</string>
+    <string name="quran_juz2">ಜುಝ್\'</string>
+    <string name="quran_page">ಪುಟ</string>
+    <string name="quran_sura">ಅಧ್ಯಾಯ </string>
+    <string name="quran_ayah">ಸೂಕ್ತಿ</string>
+    <string name="quran_sura_title">ಅಧ್ಯಾಯ%1$s</string>
+    <string name="no_quran_sura_title"> %1$s</string>
+    <string name="kannada_translation">Kannada</string>
+    <string name="sura_ayah_notification_str">ಅಧ್ಯಾಯ %1$s, ಸೂಕ್ತಿ %2$d</string>
+
+    <string name="bookmarks_current_page">ಈಗ ಇರುವ ಪುಟ</string>
+    <string name="index_loading">ಲೋಡ್ ಆಗುತ್ತಿದೆ&#8230;</string>
+
+    <string name="canceling">ರದ್ದು ಆಗುತ್ತಿದೆ&#8230;</string>
+    <string name="juz2_description">ಜುಝ್\' %1$s</string>
+    <string name="page_description">ಪುಟ %1$s, ಜುಝ್\' %2$s</string>
+    <string name="highlighting_database">ಅಗತ್ಯವಿರುವ ಫೈಲ್ಗಳನ್ನು</string>
+    <string name="timing_database">ಅಗತ್ಯವಿರುವ ಫೈಲ್ಗಳನ್ನು</string>
+    <string name="infinity">&#8734;</string>
+    
+    <!-- download statuses and errors -->
+    <string name="sdcard_error">SD ಕಾರ್ಡ್ ಸಿಗುತ್ತಿಲ್ಲ. ಮತ್ತೊಮ್ಮೆ ಮೌಂಟ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ.</string>
+    <string name="download_successful">ಡೌನ್ಲೋಡ್ ಯಶಸ್ವಿಗೊಂಡಿದೆ</string>
+    <string name="download_processing">ಡೌನ್ಲೋಡ್ ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ&#8230;</string>
+    <string name="download_error_general">ಡೌನ್ಲೋಡ್ ವಿಫಲಗೊಂಡಿದೆ</string>
+    <string name="download_error_disk">ಡೌನ್ಲೋಡ್ ಗೆ ಸಾಕಷ್ಟು ಡಿಸ್ಕ್ ಜಾಗವಿಲ್ಲ</string>
+    <string name="download_error_network">ಇಂಟರ್ನೆಟ್ ದೋಷದಿಂದಾಗಿ ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</string>
+    <string name="download_error_perms">ಅನುಮತಿಗಳ ದೋಷದಿಂದಾಗಿ ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</string>
+    <string name="download_error_invalid_download">ಡೌನ್ಲೋಡ್ ಫೈಲ್ ಕೆಟ್ಟುಹೋಗಿದೆ</string>
+    <string name="download_error_invalid_download_retry">ಫೈಲ್ ಕೆಟ್ಟುಹೋಗಿದೆ,  ಪುನಃ ಡೌನ್ಲೋಡ್ ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದೇವೆ</string>
+    <string name="download_error_network_retry">ಇಂಟರ್ನೆಟ್  ದೋಷ, ಪುನರಾರಂಭಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದೇವೆ&#8230;</string>
+    <string name="notification_download_canceled">ಡೌನ್ಲೋಡ್ ರದ್ದುಮಾಡಲಾಗಿದೆ</string>
+    <string name="download_non_wifi_prompt">ನೀವು Wi-Fi ನಲ್ಲಿ ಇಲ್ಲ. ಆದರೂ ದಶಮಾಂಶ ಡೌನ್ಲೋಡ್ ಮಾಡುವಿರಾ?</string>
+    
+    <!-- downloading dialogs -->
+    <string name="download_progress">Downloaded %1$s / %2$s</string>
+    <string name="process_progress">ಫೈಲ್ ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ </string>
+    <string name="download_retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="download_cancel">ರದ್ದುಮಾಡಿ</string>
+    <string name="download_extra_data">ಕುರ್ ಆನಿನ ಸೂಕ್ತಿಗಳನ್ನು ಶೇರ್ ಮಾಡಲು ಒಂದು ಸಣ್ಣ ಅಪ್ಡೇಟ್ ಮಾಡಬೇಕಾಗಿದೆ. ನೀವು ಈಗ ಅಪ್ಡೇಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?</string>
+
+    <!-- translation database stuff -->
+    <string name="remove_dlg_title">Remove Translation?</string>
+    <string name="remove_dlg_msg">Are you sure you would like to remove the %1$s?</string>
+    <string name="error_getting_translation_list">Unable to ಡೌನ್ ಲೋಡ್  the list of translations.  Please try again later.</string>
+    <string name="search_data">ಹುಡುಕಿ...</string>
+    <string name="need_translation">You don\'t have any translations/tafaseer downloaded yet.</string>
+    <string name="get_translations">Get Translations</string>
+
+    <!-- help -->
+    <string name="email_us">ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳನ್ನು  apps@scalosphere.com ಗೆ ಇಮೇಲ್ ಮಾಡಬಹುದು.
+    </string>
+
+    <!-- sura metainfo -->
+    <string name="makki">ಮಕ್ಕಾದಲ್ಲಿ</string>
+    <string name="madani">ಮದೀನಾದಲ್ಲಿ</string>
+    <plurals name="verses">
+        <item quantity="one">ಒಂದು ಸೂಕ್ತಿ</item>
+        <item quantity="other">%s ಸೂಕ್ತಿಗಳು </item>
+    </plurals>
+
+    <!-- ayah action panel -->
+    <string name="ayah_tags_page">ಟ್ಯಾಗ್</string>
+    <string name="ayah_translation_page">Translation</string>
+    <string name="play_from">From</string>
+    <string name="play_to">To</string>
+    <string name="play_options">Options</string>
+    <string name="play_restrict_range">Only play the above verses</string>
+    <string name="repeat_verses_range">Repeat set of verses:</string>
+    <string name="repeat_each_verse">Repeat each verse:</string>
+    <string name="play_apply">Apply</string>
+    <string name="play_apply_and_play">Apply and Play</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
+
+    <string-array name="repeatValues">
+        <item>never</item>
+        <item>1 time</item>
+        <item>2 times</item>
+        <item>3 times</item>
+        <item>infinitely</item>
+    </string-array>
+
+    <!-- long press -->
+    <string name="bookmark_ayah">ಈ ಸೂಕ್ತಿಯನ್ನು ಗುರುತುಮಾಡಿ</string>
+    <string name="unbookmark_ayah">ಈ ಸೂಕ್ತಿಯ ಗುರುತನ್ನು ತೆಗೆದುಹಾಕಿ</string>
+    <string name="tag_ayah">Tag this Ayah</string>
+    <string name="share_ayah">ಸೂಕ್ತಿಯ ಲಿಂಕನ್ನು ಶೇರ್ ಮಾಡಿ</string>
+    <string name="share_ayah_text">ಸೂಕ್ತಿಯನ್ನು ಶೇರ್ ಮಾಡಿ</string>
+    <string name="translation_ayah">ಸೂಕ್ತಿಯ ಅನುವಾದ/ತಫ್ಸೀರ್</string>
+    <string name="foot_notes">ಟಿಪ್ಪಣಿಗಳು</string>
+    <string name="no_foot_notes">ಈ ಪುಟದಲ್ಲಿ ಟಿಪ್ಪಣಿಗಳು ಇಲ್ಲ</string>
+    <string name="play_from_here">Play from Here</string>
+    <string name="via_string">via ಪವಿತ್ರ ಕುರ್ ಆನ್ (Pavitra Qur\'aan)</string>
+    <string name="search_key">ಸೂಕ್ತಿಯನ್ನು ಹುಡುಕಲು \'ಹುಡುಕಿ\' ಕೀಲಿಯನ್ನು ಒತ್ತಿ</string>
+    <string name="copy_ayah">ಸೂಕ್ತಿಯನ್ನು ಕಾಪಿ ಮಾಡಿ</string>
+    <string name="ayah_copied_popup">ಸೂಕ್ತಿ ಕಾಪಿ ಆಯಿತು</string>
+    <string name="footnotes_copied_popup">ಟಿಪ್ಪಣಿಗಳು ಕಾಪಿ ಆಯಿತು</string>
+    <string name="show_more">ಹೆಚ್ಚು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸಿ</string>
+    <string name="bismillah">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ </string>
+
+    <!-- bookmarks & tags contextual action bar -->
+    <string name="delete_bookmark">ಗುರುತನ್ನು ಅಳಿಸಿ</string>
+    <string name="tag_bookmark">Tag ಗುರುತು(Bookmark)</string>
+    <string name="delete_tag">Delete Tag</string>
+    <string name="edit_tag">Edit Tag</string>
+    <string name="new_tag">New Tag</string>
+    <string name="not_tagged">Not Tagged</string>
+    
+    <!-- tag dialog -->
+    <string name="tag_dlg_title">Tag</string>
+    <string name="tag_name">Name</string>
+    
+    <!-- bookmark & tag list -->
+    <string name="bookmarks_list_empty">ಯಾವುದೇ ಗುರುತು ಇಲ್ಲ</string>
+    <string name="tags_list_empty">No Tags</string>
+
+</resources>

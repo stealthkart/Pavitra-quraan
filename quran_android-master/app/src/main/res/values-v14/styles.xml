@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style name="ActionBar.Solid.Kanquraan" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@color/light_cream</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_kanquraan</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_kanquraan</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Kanquraan</item>
+        <item name="android:titleTextStyle">@style/TitleBarTextColor</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Kanquraan" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_kanquraan</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Kanquraan</item>
+    </style>
+
+    <style name="PopupMenu.Kanquraan" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/dialog_shape_top_3</item>
+        <item name="android:dropDownSelector">@drawable/dialog_shape_top_3</item>
+        <item name="android:textColor">@color/appGreen</item>
+        <item name="background">@drawable/ab_solid_kanquraan</item>
+    </style>
+
+    <style name="DropDownListView.Kanquraan" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_kanquraan</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Kanquraan" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_kanquraan</item>
+    </style>
+
+    <style name="ActionBarTabText.Kanquraan" parent="@android:style/Widget.Holo.Light.ActionBar.TabText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="DropDownNav.Kanquraan" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_kanquraan</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_kanquraan</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_kanquraan</item>
+    </style>
+
+    <style name="ProgressBar.Kanquraan" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_kanquraan</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Kanquraan" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_kanquraan</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Kanquraan.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Kanquraan</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Kanquraan</item>
+    </style>
+
+    <style name="TitleBarTextColor" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Menu">
+        <item name="android:textColor">@color/sura_details_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CustomTheme_white_Dialog" parent="android:Theme.Holo.Light.Dialog">
+        <!-- See caveat -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:textColor">@color/appGreen</item>
+
+    </style>
+
+    <style name="CustomTheme_Dialog" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:buttonBarButtonStyle">@style/CustomTheme.Dialog.Button</item>
+        <!-- See caveat -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:textColor">@color/appGreen</item>
+
+    </style>
+
+    <style name="CustomTheme.Dialog.Button" parent="@android:style/Widget.Holo.Light.Button.Borderless.Small">
+        <item name="android:background">@drawable/button_shape</item>
+    </style>
+
+    <style name="QuranAndroid" parent="android:Theme.Holo.Light">
+
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_kanquraan</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Kanquraan</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Kanquraan</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Kanquraan</item>
+        <item name="android:actionBarTabTextStyle">@style/ActionBarTabText.Kanquraan</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Kanquraan</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Kanquraan</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_kanquraan</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_kanquraan</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Kanquraan</item>
+        <item name="actionBarTabBarStyle">@style/Widget.Sherlock.ActionBar.TabBar</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Kanquraan</item>
+        <item name="android:panelBackground">@drawable/dialog_shape_3</item>
+
+    </style>
+
+</resources>

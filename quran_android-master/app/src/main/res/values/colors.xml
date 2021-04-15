@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="page_background">#ebe4ca</color>
+	<color name="header_text_color">#003300</color>
+	<color name="sura_info_color">#003300</color>
+	<color name="sura_details_color">#2c5e2c</color>
+	<color name="hizb_number_color">#2c5e2c</color>
+    <color name="transparent_actionbar_color">#00003300</color>
+    <color name="panel_background_color">#ebe4ca</color>
+    <color name="icon_page_indicator_color">#666666</color>
+    <color name="translation_hdr_color">#003300</color>
+    <color name="translation_sura_header">#FF0000</color>
+    <color name="overlay_text_color">#000000</color>
+    <color name="selection_highlight">#404694A6</color>
+    <color name="audio_highlight">#4046A646</color>
+    <color name="note_highlight">#40EBEB21</color>
+    <color name="bookmark_highlight">#40A4A4A4</color>
+    <color name="translation_highlight">#2c5e2c</color>
+    <color name="toolbar_background">#FFFFFF</color>
+    <color name="toolbar_item_pressed">#55138607</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="redpink">#B22222</color>
+    <color name="appGreen">#17572A</color>
+    <color name="light_cream">#ebe4ca</color>
+    <color name="border_barva">#e3a112</color>
+
+</resources>

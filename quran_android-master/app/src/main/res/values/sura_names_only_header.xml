@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sura_names_only_header">
+        <item>ಅಲ್-ಫಾತಿಹಃ </item>
+        <item>ಅಲ್-ಬಕರಃ &lt;sup>4&lt;/sup></item>
+        <item>ಆಲಿ \'ಇಮ್ರಾನ್ &lt;sup>65&lt;/sup></item>
+        <item>ಅನ್ನಿಸಾ\'ಅ &lt;sup>95.a&lt;/sup></item>
+        <item>ಅಲ್-ಮಾ\'ಇದಃ &lt;sup>130.a&lt;/sup></item>
+        <item>ಅಲ್-ಅನ್\'ಆಮ್&lt;sup>156.a&lt;/sup></item>
+        <item>ಅಲ್-ಅ\'ಅರಾಫ್&lt;sup>197&lt;/sup></item>
+        <item>ಅಲ್-ಅನ್ಫಾಲ್</item>
+        <item>ಅತ್ತೌಬಃ&lt;sup>261&lt;/sup></item>
+        <item>ಯೂನುಸ್</item>
+        <item>ಹೂದ್</item>
+        <item>ಯೂಸುಫ್</item>
+        <item>ಅರ್ರ\'ಅದ್&lt;sup>385.a&lt;/sup></item>
+        <item>ಇಬ್ರಾಹೀಮ್</item>
+        <item>ಅಲ್-ಹಿಜ್ರ್&lt;sup>416&lt;/sup></item>
+        <item>ಅನ್ನಹ್ಲ್&lt;sup>441.a&lt;/sup></item>
+        <item>ಅಲ್-ಇಸ್ರಾ\'ಅ&lt;sup>483.a&lt;/sup></item>
+        <item>ಅಲ್-ಕಹ್\'ಫ್&lt;sup>552&lt;/sup></item>
+        <item>ಮರ್ಯಮ್&lt;sup>560&lt;/sup></item>
+        <item>ತ್ವಾಹಾ</item>
+        <item>ಅಲ್-ಅಂಬಿಯಾ&lt;sup>603&lt;/sup></item>
+        <item>ಅಲ್-ಹಜ್ಜ್&lt;sup>629&lt;/sup></item>
+        <item>ಅಲ್-ಮು\'ಅಮಿನೂನ್&lt;sup>653&lt;/sup></item>
+        <item>ಅನ್ನೂರ್&lt;sup>663&lt;/sup></item>
+        <item>ಅಲ್-ಫುರ್ಕಾನ್&lt;sup>683&lt;/sup></item>
+        <item>ಅಶ್ಶುಅರಾ\'ಅ&lt;sup>704&lt;/sup></item>
+        <item>ಅನ್ನಮ್ಲ್&lt;sup>727&lt;/sup></item>
+        <item>ಅಲ್-ಕ್ವಸಸ್&lt;sup>745&lt;/sup></item>
+        <item>ಅಲ್-ಅನ್ಕಬೂತ್&lt;sup>769&lt;/sup></item>
+        <item>ಅರ್ರೂಮ್</item>
+        <item>ಲುಕ್ಮಾನ್&lt;sup>795&lt;/sup></item>
+        <item>ಅಸ್ಸಜ್ದಃ</item>
+        <item>ಅಲ್-ಅಹ್\'ಝಾಬ್&lt;sup>804&lt;/sup></item>
+        <item>ಸಬ\'ಅ</item>
+        <item>ಫಾತಿರ್&lt;sup>858&lt;/sup></item>
+        <item>ಯಾಸೀನ್</item>
+        <item>ಅಸ್ಸಾಫ್ಫಾತ್ &lt;sup>890&lt;/sup></item>
+        <item>ಸ್ವಾದ್</item>
+        <item>ಅಝ್ಝುಮರ್ </item>
+        <item>ಗಾಫಿರ್&lt;sup>941&lt;/sup></item>
+        <item>ಫುಸ್ಸಿಲತ್ &lt;sup>954&lt;/sup></item>
+        <item>ಅಶ್ಶೂರಾ&lt;sup>966&lt;/sup></item>
+        <item>ಅಝ್ಝುಖ್ರುಫ್&lt;sup>982&lt;/sup></item>
+        <item>ಅದ್ದುಖಾನ್ &lt;sup>1000&lt;/sup></item>
+        <item>ಅಲ್-ಜಾಸಿಯಃ &lt;sup>1004&lt;/sup></item>
+        <item>ಅಲ್-ಅಹ್ಕಾಫ್&lt;sup>1009&lt;/sup></item>
+        <item>ಮುಹಮ್ಮದ್</item>
+        <item>ಅಲ್-ಫತ್ ಹ್ </item>
+        <item>ಅಲ್-ಹುಜರಾತ್ </item>
+        <item>ಕ್ವಾಫ್</item>
+        <item>ಅದ್ಝಾರಿಯಾತ್ </item>
+        <item>ಅತ್ತೂರ್ </item>
+        <item>ಅನ್ನಜ್ಮ್ </item>
+        <item>ಅಲ್-ಕಮರ್ </item>
+        <item>ಅರ್ರಹ್ಮಾನ್ </item>
+        <item>ಅಲ್-ವಾಕಿ\'ಅಃ </item>
+        <item>ಅಲ್-ಹದೀದ್ </item>
+        <item>ಅಲ್-ಮುಜಾದಿಲಃ&lt;sup>1110&lt;/sup></item>
+        <item>ಅಲ್-ಹಶ್ರ್ &lt;sup>1117&lt;/sup></item>
+         <item>ಅಲ್-ಮುಮ್ತಹನಃ &lt;sup>1123&lt;/sup> </item>
+        <item>ಅಸ್ಸಫ್ಫ್</item>
+        <item>ಅಲ್-ಜುಮುಅಃ&lt;sup>1129&lt;/sup></item>
+        <item>ಅಲ್-ಮುನಾಫಿಕೂನ್ </item>
+        <item>ಅತ್ತಗಾಬುನ್ &lt;sup>1138&lt;/sup></item>
+        <item>ಅತ್ತಲಾಕ್ </item>
+        <item>ಅತ್ತಹ್ರೀಮ್ </item>
+        <item>ಅಲ್-ಮುಲ್ಕ್ </item>
+        <item>ಅಲ್-ಕಲಮ್ </item>
+        <item>ಅಲ್-ಹಾಕ್ಕಃ </item>
+        <item>ಅಲ್-ಮ\'ಆರಿಜ್</item>
+        <item>ನೂಹ್</item>
+        <item>ಅಲ್-ಜಿನ್ನ್</item>
+        <item>ಅಲ್-ಮುಝ್ಝಮ್ಮಿಲ್ </item>
+        <item>ಅಲ್-ಮುದ್ದಸ್ಸಿರ್ </item>
+        <item>ಅಲ್-ಕಿಯಾಮಃ </item>
+        <item>ಅಲ್-ಇನ್ಸಾನ್ </item>
+        <item>ಅಲ್-ಮುರ್ಸಲಾತ್ </item>
+        <item>ಅನ್ನಬಅ</item>
+        <item>ಅನ್ನಾಝಿ\'ಆತ್ </item>
+        <item>\'ಅಬಸ</item>
+        <item>ಅತ್ತಕ್ವೀರ್ </item>
+        <item>ಅಲ್-ಇನ್\'ಫಿತಾರ್ </item>
+        <item>ಅಲ್-ಮುತಫ್ಫಿಫೀನ್ </item>
+        <item>ಅಲ್-ಇನ್ ಶಿಕಾಕ್ </item>
+        <item>ಅಲ್-ಬುರೂಜ್ </item>
+        <item>ಅತ್ತಾರಿಕ್ </item>
+        <item>ಅಲ್-ಅ\'ಅಲಾ </item>
+        <item>ಅಲ್-ಗಾಶಿಯಃ </item>
+        <item>ಅಲ್-ಫಜ್ರ್ </item>
+        <item>ಅಲ್-ಬಲದ್ </item>
+        <item>ಅಶ್ಶಮ್ಸ್ </item>
+        <item>ಅಲ್ಲೈಲ್ </item>
+        <item>ಅದ್ದುಹಾ </item>
+        <item>ಅಶ್ಶರ್ಹ್ </item>
+        <item>ಅತ್ತೀನ್ </item>
+        <item>ಅಲ್-\'ಅಲಕ್</item>
+        <item>ಅಲ್-ಕದ್ರ್ </item>
+        <item>ಅಲ್-ಬಯ್ಯಿನಃ </item>
+        <item>ಅಝ್ಝಲ್ ಝಲಃ </item>
+        <item>ಅಲ್-\'ಆದಿಯಾತ್ </item>
+        <item>ಅಲ್-ಕಾರಿಅಃ </item>
+        <item>ಅತ್ತಕಾಸುರ್ </item>
+        <item>ಅಲ್-\'ಅಸ್ರ್ </item>
+        <item>ಅಲ್-ಹುಮಝಃ </item>
+        <item>ಅಲ್-ಫೀಲ್ </item>
+        <item>ಕುರೈಶ್</item>
+        <item>ಅಲ್-ಮಾ\'ಊನ್ </item>
+        <item>ಅಲ್-ಕೌಸರ್ </item>
+        <item>ಅಲ್ ಕಾಫಿರೂನ್ </item>
+        <item>ಅನ್ನಸ್ರ್ </item>
+        <item>ಅಲ್-ಮಸದ್ </item>
+        <item>ಅಲ್-ಇಖ್ಲಾಸ್ </item>
+        <item>ಅಲ್-ಫಲಕ್ </item>
+        <item>ಅನ್ನಾಸ್ </item>
+    </string-array>
+</resources>
