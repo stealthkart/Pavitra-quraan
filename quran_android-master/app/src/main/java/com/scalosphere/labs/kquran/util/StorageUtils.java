@@ -32,32 +32,32 @@ public class StorageUtils {
   /**
    * @return A List of all storage locations available
    */
-  public static List<Storage> getAllStorageLocations(Context context) {
-    Collection<String> mounts = readMountsFile();
-
-    // As per http://source.android.com/devices/tech/storage/config.html
-    // device-specific vold.fstab file is removed after Android 4.2.2
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-        Collection<String> vold = readVoldsFile();
-
-        List<String> toRemove = new ArrayList<String>();
-        for (Iterator<String> iter = mounts.iterator(); iter.hasNext(); ){
-            String mount = iter.next();
-            if (!vold.contains(mount)){
-                toRemove.add(mount);
-            }
-        }
-
-        for (String s : toRemove){
-            mounts.remove(s);
-        }
-    } else {
-        Log.d(TAG, "Android version: " + Build.VERSION.CODENAME + " skip reading vold.fstab file");
-    }
-
-    Log.d(TAG, "mounts list is: " + mounts);
-    return buildMountsList(context, mounts);
-  }
+//  public static List<Storage> getAllStorageLocations(Context context) {
+//    Collection<String> mounts = readMountsFile();
+//
+//    // As per http://source.android.com/devices/tech/storage/config.html
+//    // device-specific vold.fstab file is removed after Android 4.2.2
+//    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+//        Collection<String> vold = readVoldsFile();
+//
+//        List<String> toRemove = new ArrayList<String>();
+//        for (Iterator<String> iter = mounts.iterator(); iter.hasNext(); ){
+//            String mount = iter.next();
+//            if (!vold.contains(mount)){
+//                toRemove.add(mount);
+//            }
+//        }
+//
+//        for (String s : toRemove){
+//            mounts.remove(s);
+//        }
+//    } else {
+//        Log.d(TAG, "Android version: " + Build.VERSION.CODENAME + " skip reading vold.fstab file");
+//    }
+//
+//    Log.d(TAG, "mounts list is: " + mounts);
+//    return buildMountsList(context, mounts);
+//  }
 
   private static List<Storage> buildMountsList(Context context,
                                                Collection<String> mounts){
@@ -132,42 +132,42 @@ public class StorageUtils {
     return Environment.isExternalStorageEmulated();
   }
 
-  private static Collection<String> readMountsFile() {
-    String sdcardPath = Environment
-        .getExternalStorageDirectory().getAbsolutePath();
-    List<String> mounts = new ArrayList<String>();
-    mounts.add(sdcardPath);
-
-    Log.d(TAG, "reading mounts file begin");
-    try {
-      File mountFile = new File("/proc/mounts");
-      if (mountFile.exists()) {
-        Log.d(TAG, "mounts file exists");
-        Scanner scanner = new Scanner(mountFile);
-        while (scanner.hasNext()) {
-          String line = scanner.nextLine();
-          Log.d(TAG, "line: " + line);
-          if (line.startsWith("/dev/block/vold/")) {
-            String[] lineElements = line.split(" ");
-            String element = lineElements[1];
-            Log.d(TAG, "mount element is: " + element);
-            if (!sdcardPath.equals(element)){
-              mounts.add(element);
-            }
-          } else {
-            Log.d(TAG, "skipping mount line: " + line);
-          }
-        }
-      } else {
-        Log.d(TAG, "mounts file doesn't exist");
-      }
-
-      Log.d(TAG, "reading mounts file end.. list is: " + mounts);
-    } catch (Exception e) {
-      Log.e(TAG, "Error reading mounts file", e);
-    }
-    return mounts;
-  }
+//  private static Collection<String> readMountsFile() {
+//    String sdcardPath = Environment
+//        .getExternalStorageDirectory().getAbsolutePath();
+//    List<String> mounts = new ArrayList<String>();
+//    mounts.add(sdcardPath);
+//
+//    Log.d(TAG, "reading mounts file begin");
+//    try {
+//      File mountFile = new File("/proc/mounts");
+//      if (mountFile.exists()) {
+//        Log.d(TAG, "mounts file exists");
+//        Scanner scanner = new Scanner(mountFile);
+//        while (scanner.hasNext()) {
+//          String line = scanner.nextLine();
+//          Log.d(TAG, "line: " + line);
+//          if (line.startsWith("/dev/block/vold/")) {
+//            String[] lineElements = line.split(" ");
+//            String element = lineElements[1];
+//            Log.d(TAG, "mount element is: " + element);
+//            if (!sdcardPath.equals(element)){
+//              mounts.add(element);
+//            }
+//          } else {
+//            Log.d(TAG, "skipping mount line: " + line);
+//          }
+//        }
+//      } else {
+//        Log.d(TAG, "mounts file doesn't exist");
+//      }
+//
+//      Log.d(TAG, "reading mounts file end.. list is: " + mounts);
+//    } catch (Exception e) {
+//      Log.e(TAG, "Error reading mounts file", e);
+//    }
+//    return mounts;
+//  }
 
   /**
    * reads volume manager daemon file for auto-mounted storage
@@ -175,48 +175,48 @@ public class StorageUtils {
    *
    * @return
    */
-  private static Set<String> readVoldsFile() {
-    Set<String> volds = new HashSet<String>();
-    volds.add(Environment.getExternalStorageDirectory().getAbsolutePath());
-
-    Log.d(TAG, "reading volds file");
-    try {
-      File voldFile = new File("/system/etc/vold.fstab");
-      if (voldFile.exists()) {
-        Log.d(TAG, "reading volds file begin");
-        Scanner scanner = new Scanner(voldFile);
-        while (scanner.hasNext()) {
-          String line = scanner.nextLine();
-          Log.d(TAG, "line: " + line);
-          if (line.startsWith("dev_mount")) {
-            String[] lineElements = line.split(" ");
-            String element = lineElements[2];
-            Log.d(TAG, "volds element is: " + element);
-
-            if (element.contains(":")) {
-              element = element.substring(
-                  0, element.indexOf(":"));
-              Log.d(TAG, "volds element is: " + element);
-            }
-
-            Log.d(TAG, "adding volds element to list: " + element);
-            volds.add(element);
-          } else {
-            Log.d(TAG, "skipping volds line: " + line);
-          }
-        }
-      }
-      else {
-        Log.d(TAG, "volds file doesn't exit");
-      }
-      Log.d(TAG, "reading volds file end.. list is: " + volds);
-    }
-    catch (Exception e) {
-      Log.e(TAG, "Error reading vold file", e);
-    }
-
-    return volds;
-  }
+//  private static Set<String> readVoldsFile() {
+//    Set<String> volds = new HashSet<String>();
+//    volds.add(Environment.getExternalStorageDirectory().getAbsolutePath());
+//
+//    Log.d(TAG, "reading volds file");
+//    try {
+//      File voldFile = new File("/system/etc/vold.fstab");
+//      if (voldFile.exists()) {
+//        Log.d(TAG, "reading volds file begin");
+//        Scanner scanner = new Scanner(voldFile);
+//        while (scanner.hasNext()) {
+//          String line = scanner.nextLine();
+//          Log.d(TAG, "line: " + line);
+//          if (line.startsWith("dev_mount")) {
+//            String[] lineElements = line.split(" ");
+//            String element = lineElements[2];
+//            Log.d(TAG, "volds element is: " + element);
+//
+//            if (element.contains(":")) {
+//              element = element.substring(
+//                  0, element.indexOf(":"));
+//              Log.d(TAG, "volds element is: " + element);
+//            }
+//
+//            Log.d(TAG, "adding volds element to list: " + element);
+//            volds.add(element);
+//          } else {
+//            Log.d(TAG, "skipping volds line: " + line);
+//          }
+//        }
+//      }
+//      else {
+//        Log.d(TAG, "volds file doesn't exit");
+//      }
+//      Log.d(TAG, "reading volds file end.. list is: " + volds);
+//    }
+//    catch (Exception e) {
+//      Log.e(TAG, "Error reading vold file", e);
+//    }
+//
+//    return volds;
+//  }
 
   public static class Storage {
     private String label;

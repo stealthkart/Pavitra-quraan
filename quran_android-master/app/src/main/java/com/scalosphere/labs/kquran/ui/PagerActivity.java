@@ -1,6 +1,7 @@
 package com.scalosphere.labs.kquran.ui;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,11 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -30,20 +27,26 @@ import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ActionMenuView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.viewpager.widget.ViewPager;
+
 import com.scalosphere.labs.kquran.QuranApplication;
 import com.scalosphere.labs.kquran.QuranPreferenceActivity;
 import com.scalosphere.labs.kquran.R;
@@ -104,11 +107,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.actionbarsherlock.ActionBarSherlock.OnMenuItemSelectedListener;
 
 //import com.scalosphere.labs.kquran.service.AudioService;
 
-public class PagerActivity extends SherlockFragmentActivity implements
+public class PagerActivity extends AppCompatActivity implements
         AudioStatusBar.AudioBarListener,
         BookmarkHandler,
     DefaultDownloadReceiver.DownloadListener,
@@ -219,7 +221,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
   public void onCreate(Bundle savedInstanceState) {
     ((QuranApplication) getApplication()).refreshLocale(false);
 
-    setTheme(R.style.QuranAndroid);
+    setTheme(R.style.Theme_AppCompat);
     requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
     requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
@@ -291,6 +293,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
     getSupportActionBar().setDisplayShowHomeEnabled(true);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
     final Resources resources = getResources();
     mIsLandscape = resources.getConfiguration().orientation ==
         Configuration.ORIENTATION_LANDSCAPE;
@@ -298,7 +301,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
     mAyahToolBarTotalHeight = resources
         .getDimensionPixelSize(R.dimen.toolbar_total_height);
     setContentView(R.layout.quran_page_activity_slider);
-    getSupportActionBar().setBackgroundDrawable(
+      getSupportActionBar().setBackgroundDrawable(
         new ColorDrawable(background));
     mAudioStatusBar = (AudioStatusBar) findViewById(R.id.audio_area);
     mAudioStatusBar.setAudioBarListener(this);
@@ -337,7 +340,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
     mViewPager.setAdapter(mPagerAdapter);
 
     mAyahToolBar.setOnItemSelectedListener(new AyahMenuItemSelectionHandler());
-    mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+    mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
 
       @Override
@@ -587,9 +590,9 @@ public class PagerActivity extends SherlockFragmentActivity implements
         mIsActionBarHidden = !visible;
         if (visible){
           mAudioStatusBar.updateSelectedItem();
-          getSherlock().getActionBar().show();
+          getSupportActionBar().show();
         } else {
-          getSherlock().getActionBar().hide();
+          getSupportActionBar().hide();
         }
 
         mAudioStatusBar.animate()
@@ -777,6 +780,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
 
   @Override
   public void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
     if (intent == null) {
       return;
     }
@@ -784,15 +788,14 @@ public class PagerActivity extends SherlockFragmentActivity implements
     Bundle extras = intent.getExtras();
     if (extras != null) {
       int page = Constants.PAGES_LAST -
-          extras.getInt("page", Constants.PAGES_FIRST);
+              extras.getInt("page", Constants.PAGES_FIRST);
       updateActionBarTitle(Constants.PAGES_LAST - page);
 
       boolean currentValue = mShowingTranslation;
       mShowingTranslation = extras.getBoolean(EXTRA_JUMP_TO_TRANSLATION,
-          mShowingTranslation);
+              mShowingTranslation);
       mHighlightedSura = extras.getInt(EXTRA_HIGHLIGHT_SURA, -1);
       mHighlightedAyah = extras.getInt(EXTRA_HIGHLIGHT_AYAH, -1);
-
 
 
 //TODO check this flag for showing translation directly
@@ -915,7 +918,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     super.onCreateOptionsMenu(menu);
-    MenuInflater inflater = getSupportMenuInflater();
+    MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.quran_menu, menu);
     return true;
   }
@@ -1272,9 +1275,9 @@ public class PagerActivity extends SherlockFragmentActivity implements
 
   private void updateActionBarTitle(int page) {
     String sura = QuranInfo.getSuraNameFromPage(this, page, false);
-    ActionBar actionBar = getSupportActionBar();
+    androidx.appcompat.app.ActionBar actionBar=getSupportActionBar();
     actionBar.setDisplayShowTitleEnabled(true);
-    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+//    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
     actionBar.setTitle(sura);
     String desc = QuranInfo.getPageSubtitle(this, page);
     actionBar.setSubtitle(desc);
@@ -1315,7 +1318,7 @@ public class PagerActivity extends SherlockFragmentActivity implements
       return;
     }
 
-    mSpinnerAdapter = new ArrayAdapter<String>(this,R.layout.sherlock_spinner_dropdown_item,mTranslationItems) {
+    mSpinnerAdapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,mTranslationItems) {
       @Override
       public View getView(int position, View convertView, ViewGroup parent) {
         SpinnerHolder holder;
@@ -1356,12 +1359,12 @@ public class PagerActivity extends SherlockFragmentActivity implements
       }
     }
 
-    getSupportActionBar().setNavigationMode(
+    getActionBar().setNavigationMode(
         ActionBar.NAVIGATION_MODE_LIST);
     /*getSupportActionBar().setListNavigationCallbacks(mSpinnerAdapter,
         mNavigationCallback);*/
-    getSupportActionBar().setSelectedNavigationItem(selected);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    getActionBar().setSelectedNavigationItem(selected);
+    getActionBar().setDisplayShowTitleEnabled(false);
   }
 
   BroadcastReceiver mAudioReceiver = new BroadcastReceiver() {
@@ -2222,9 +2225,47 @@ public class PagerActivity extends SherlockFragmentActivity implements
     }
   }
 
-  private class AyahMenuItemSelectionHandler implements OnMenuItemSelectedListener {
+  private class AyahMenuItemSelectionHandler implements ActionMenuView.OnMenuItemClickListener {
+//    @Override
+//    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+//      int sliderPage = -1;
+//      switch (item.getItemId()) {
+//        case R.id.cab_bookmark_ayah:
+//          toggleBookmark(mStart.sura, mStart.ayah, mStart.getPage());
+//          break;
+////        case R.id.cab_tag_ayah:
+////          sliderPage = SlidingPagerAdapter.TAG_PAGE;
+////          break;
+//        case R.id.cab_translate_ayah:
+//          sliderPage = SlidingPagerAdapter.TRANSLATION_PAGE;
+//          break;
+//        case R.id.cab_play_from_here:
+//          sliderPage = SlidingPagerAdapter.AUDIO_PAGE;
+//          break;
+//        /*
+//        original code , commented for KQ
+//        case R.id.cab_share_ayah_link:
+//          new ShareQuranAppTask(PagerActivity.this, mStart, mEnd).execute();
+//          break;*/
+//        case R.id.cab_share_ayah_text:
+//          new ShareAyahTask(PagerActivity.this, mStart, mEnd, false).execute();
+//          break;
+//        case R.id.cab_copy_ayah:
+//          new ShareAyahTask(PagerActivity.this, mStart, mEnd, true).execute();
+//          break;
+//        default:
+//          return false;
+//      }
+//      if (sliderPage < 0) {
+//        endAyahMode();
+//      } else {
+//        showSlider(sliderPage);
+//      }
+//      return true;
+//    }
+
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onMenuItemClick(MenuItem item) {
       int sliderPage = -1;
       switch (item.getItemId()) {
         case R.id.cab_bookmark_ayah:
@@ -2273,12 +2314,9 @@ public class PagerActivity extends SherlockFragmentActivity implements
     // So by posting this later it gives time for onLayout to run.
     // Another issue is that the fragments haven't been created yet
     // (on first run), so calling refreshPages() before then won't work.
-    mHandler.post(new Runnable() {
-      @Override
-      public void run() {
-        mSlidingPanel.expandPane();
-        refreshPages();
-      }
+    mHandler.post(() -> {
+      mSlidingPanel.expandPane();
+      refreshPages();
     });
   }
 

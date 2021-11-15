@@ -7,23 +7,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+
 import com.scalosphere.labs.kquran.AboutUsActivity;
 import com.scalosphere.labs.kquran.QuranApplication;
 import com.scalosphere.labs.kquran.R;
@@ -37,11 +39,12 @@ import com.scalosphere.labs.kquran.ui.fragment.JumpFragment;
 import com.scalosphere.labs.kquran.ui.fragment.SuraListFragment;
 import com.scalosphere.labs.kquran.ui.fragment.TagBookmarkDialog;
 import com.scalosphere.labs.kquran.ui.helpers.BookmarkHandler;
+import com.scalosphere.labs.kquran.ui.helpers.FragmentStatePagerAdapter;
 import com.scalosphere.labs.kquran.util.QuranSettings;
 
 //import com.scalosphere.labs.kquran.service.AudioService;
 
-public class QuranActivity extends SherlockFragmentActivity
+public class QuranActivity extends AppCompatActivity
         implements ActionBar.TabListener, BookmarkHandler,
         AddTagDialog.OnTagChangedListener,
                    TagBookmarkDialog.OnBookmarkTagsUpdateListener {
@@ -94,7 +97,7 @@ public class QuranActivity extends SherlockFragmentActivity
       ((QuranApplication)getApplication()).refreshLocale(false);
       sharedContext = getApplicationContext();
 
-      setTheme(R.style.QuranAndroid);
+      setTheme(R.style.Theme_AppCompat);
       super.onCreate(savedInstanceState);
       setContentView(R.layout.quran_index);
 
@@ -116,7 +119,7 @@ public class QuranActivity extends SherlockFragmentActivity
       mPager.setOffscreenPageLimit(3);
       mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), mIsArabic);
       mPager.setAdapter(mPagerAdapter);
-      mPager.setOnPageChangeListener(mOnPageChangeListener);
+      mPager.addOnPageChangeListener(mOnPageChangeListener);
 
       if (mIsArabic) {
         mPager.setCurrentItem(mTabs.length - 1);
@@ -178,7 +181,7 @@ public class QuranActivity extends SherlockFragmentActivity
       return mBookmarksDBAdapter;
    }
 
-   private Handler mHandler = new Handler(){
+   private Handler mHandler = new Handler(Looper.getMainLooper()){
       @Override
       public void handleMessage(Message msg) {
          if (msg.what == REFRESH_BOOKMARKS){
@@ -204,7 +207,7 @@ public class QuranActivity extends SherlockFragmentActivity
    };
 
    @Override
-   public void onTabSelected(Tab tab, FragmentTransaction transaction){
+   public void onTabSelected(ActionBar.Tab tab, FragmentTransaction transaction){
       Integer tag = (Integer)tab.getTag();
       if (mPager != null && tag != mPager.getCurrentItem()) {
         mPager.setCurrentItem(tag);
@@ -212,14 +215,14 @@ public class QuranActivity extends SherlockFragmentActivity
    }
    
    @Override
-   public void onTabReselected(Tab tab, FragmentTransaction transaction){
+   public void onTabReselected(ActionBar.Tab tab, FragmentTransaction transaction){
    }
 
    @Override
-   public void onTabUnselected(Tab tab, FragmentTransaction transaction){
+   public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction transaction){
    }
-   
-   OnPageChangeListener mOnPageChangeListener = new OnPageChangeListener(){
+
+   ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener(){
       @Override
       public void onPageScrollStateChanged(int state) {
       }
@@ -231,8 +234,8 @@ public class QuranActivity extends SherlockFragmentActivity
 
       @Override
       public void onPageSelected(int position) {
-         ActionBar actionbar = getSherlock().getActionBar();
-         Tab tab = actionbar.getTabAt(position);
+         ActionBar actionbar = getSupportActionBar();
+         ActionBar.Tab tab = actionbar.getTabAt(position);
          if (actionbar.getSelectedTab() != tab) {
            actionbar.selectTab(tab);
          }
@@ -242,7 +245,7 @@ public class QuranActivity extends SherlockFragmentActivity
    @Override
    public boolean onCreateOptionsMenu(Menu menu){
       super.onCreateOptionsMenu(menu);
-      MenuInflater inflater = getSupportMenuInflater();
+      MenuInflater inflater = getMenuInflater();
       inflater.inflate(R.menu.home_menu, menu);
       return true;
    }
@@ -450,7 +453,7 @@ public class QuranActivity extends SherlockFragmentActivity
      }
    }
    
-   public static class PagerAdapter extends FragmentPagerAdapter {
+   public static class PagerAdapter extends FragmentStatePagerAdapter {
       private boolean mIsArabic;
       public PagerAdapter(FragmentManager fm, boolean isArabic){
          super(fm);

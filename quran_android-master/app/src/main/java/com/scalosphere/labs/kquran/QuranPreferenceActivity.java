@@ -1,25 +1,28 @@
 package com.scalosphere.labs.kquran;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
+//import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
-import android.support.v4.content.ContextCompat;
+
+import android.preference.PreferenceActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
+
+import androidx.core.content.ContextCompat;
+
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.util.QuranFileUtils;
 import com.scalosphere.labs.kquran.util.QuranSettings;
@@ -30,7 +33,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class QuranPreferenceActivity extends SherlockPreferenceActivity
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+public class QuranPreferenceActivity extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
   private static final String TAG =
       "QuranPreferenceActivity";
@@ -49,10 +57,11 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
   protected void onCreate(Bundle savedInstanceState) {
     ((QuranApplication)getApplication()).refreshLocale(false);
 
-    setTheme(R.style.QuranAndroid);
+    setTheme(R.style.Theme_AppCompat);
     super.onCreate(savedInstanceState);
 
-    final ActionBar actionBar = getSupportActionBar();
+
+    ActionBar actionBar = this.getActionBar();
     if (actionBar != null) {
       actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setTitle(R.string.menu_settings);
@@ -77,7 +86,7 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
       @Override
       public boolean onPreferenceClick(Preference preference) {
         mLoadStorageOptionsTask = new LoadStorageOptionsTask();
-        mLoadStorageOptionsTask.execute();
+        mLoadStorageOptionsTask.startAsyncTask("LoadStorageOptions");
         return false;
       }
     });
@@ -94,7 +103,7 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
     */
 
     mInternalSdcardLocation =
-        Environment.getExternalStorageDirectory().getAbsolutePath();
+        getApplicationContext().getFilesDir().getAbsolutePath();
 
     mListStorageOptions = (ListPreference) findPreference(
         getString(R.string.prefs_app_location));
@@ -120,14 +129,15 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
           mStorageList.add(s);
         }
       }
-    } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-      try {
-        mStorageList = StorageUtils
-            .getAllStorageLocations(getApplicationContext());
-      } catch (Exception e) {
-        mStorageList = new ArrayList<StorageUtils.Storage>();
-      }
     }
+//    else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+//      try {
+//        mStorageList = StorageUtils
+//            .getAllStorageLocations(getApplicationContext());
+//      } catch (Exception e) {
+//        mStorageList = new ArrayList<StorageUtils.Storage>();
+//      }
+//    }
 
     // Hide Advanced Preferences Screen if there is no storage option
     // except for the normal Environment.getExternalStorageDirectory
@@ -189,7 +199,7 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
         public boolean onPreferenceChange(Preference preference, Object newValue) {
           if (TextUtils.isEmpty(QuranSettings
               .getAppCustomLocation(QuranPreferenceActivity.this)) &&
-              Environment.getExternalStorageDirectory().equals(newValue)){
+              getApplicationContext().getFilesDir().equals(newValue)){
             // do nothing since we're moving from empty settings to
             // the default sdcard setting, which are the same, but write it.
             return false;
@@ -251,7 +261,7 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
 
   private void moveFiles(String newLocation) {
     mMoveFilesTask = new MoveFilesAsyncTask(newLocation);
-    mMoveFilesTask.execute();
+    mMoveFilesTask.startAsyncTask("MoveFiles");
   }
 
   @Override
@@ -288,7 +298,7 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
     }
   }
 
-  private class MoveFilesAsyncTask extends AsyncTask<Void, Void, Boolean> {
+  private class MoveFilesAsyncTask  {
 
     private String newLocation;
     private ProgressDialog dialog;
@@ -297,21 +307,30 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
       this.newLocation = newLocation;
     }
 
-    @Override
-    protected void onPreExecute() {
+    //-------------------Main logic here-------------------//
+    private void startAsyncTask(String input) {
+
+      Observable.just(input)
+              .map(this::doInBackground)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+                   .doOnSubscribe(this::onPreExecute)
+              .subscribe(this::onPostExecute);
+
+    }
+
+    private void onPreExecute(Disposable disposable) {
       dialog = new ProgressDialog(QuranPreferenceActivity.this);
       dialog.setMessage(getString(R.string.prefs_copying_app_files));
       dialog.setCancelable(false);
       dialog.show();
     }
 
-    @Override
-    protected Boolean doInBackground(Void... voids) {
+    protected Boolean doInBackground(String input) {
       return QuranFileUtils.moveAppFiles(
           QuranPreferenceActivity.this, newLocation);
     }
 
-    @Override
     protected void onPostExecute(Boolean result) {
       if (!mIsPaused){
         dialog.dismiss();
@@ -333,25 +352,35 @@ public class QuranPreferenceActivity extends SherlockPreferenceActivity
     }
   }
 
-  private class LoadStorageOptionsTask extends AsyncTask<Void, Void, Void> {
+  private class LoadStorageOptionsTask  {
 
     private ProgressDialog dialog;
 
-    @Override
-    protected void onPreExecute() {
+    private void startAsyncTask(String input) {
+
+      Observable.just(input)
+              .map(this::doInBackground)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .doOnSubscribe(this::onPreExecute)
+              .subscribe(this::onPostExecute);
+
+    }
+
+    private void onPreExecute(Disposable disposable) {
       dialog = new ProgressDialog(QuranPreferenceActivity.this);
       dialog.setMessage(getString(R.string.prefs_calculating_app_size));
       dialog.setCancelable(false);
       dialog.show();
+
     }
 
-    @Override
-    protected Void doInBackground(Void... voids) {
+    protected Void doInBackground(String input) {
       mAppSize = QuranFileUtils.getAppUsedSpace(QuranPreferenceActivity.this);
       return null;
     }
 
-    @Override
+
     protected void onPostExecute(Void aVoid) {
       if (!mIsPaused){
         loadStorageOptions();

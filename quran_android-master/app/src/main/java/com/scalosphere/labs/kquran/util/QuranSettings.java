@@ -152,7 +152,7 @@ public class QuranSettings {
       SharedPreferences prefs =
           PreferenceManager.getDefaultSharedPreferences(context);
       return prefs.getString(context.getString(R.string.prefs_app_location),
-            Environment.getExternalStorageDirectory().getAbsolutePath());
+            context.getFilesDir().getAbsolutePath());
    }
 
    public static void setAppCustomLocation(Context context, String newLocation) {

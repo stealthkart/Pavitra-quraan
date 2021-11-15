@@ -39,9 +39,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -52,7 +49,10 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.actionbarsherlock.internal.nineoldandroids.view.animation.AnimatorProxy;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewCompat;
+import androidx.customview.widget.ViewDragHelper;
+
 import com.scalosphere.labs.kquran.R;
 
 public class SlidingUpPanelLayout extends ViewGroup {
@@ -326,7 +326,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
 
         mDragViewResId = ta.getResourceId(R.styleable.SlidingUpPanelLayout_dragView, -1);
 
-        mOverlayContent = ta.getBoolean(R.styleable.SlidingUpPanelLayout_overlay,DEFAULT_OVERLAY_FLAG);
+        mOverlayContent = ta.getBoolean(R.styleable.SlidingUpPanelLayout_fadeColor,DEFAULT_OVERLAY_FLAG);
 
         mArbitraryPositionEnabled = ta.getBoolean(R.styleable.SlidingUpPanelLayout_arbitraryPosition,DEFAULT_ARBITRARY_POS_FLAG);
       }
@@ -960,7 +960,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
         mMainView.setTranslationY(mainViewOffset);
       } else {
-        AnimatorProxy.wrap(mMainView).setTranslationY(mainViewOffset);
+//        AnimatorProxy.wrap(mMainView).setTranslationY(mainViewOffset);
       }
     }
   }
@@ -969,7 +969,7 @@ public class SlidingUpPanelLayout extends ViewGroup {
   protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
     final LayoutParams lp = (LayoutParams) child.getLayoutParams();
     boolean result;
-    final int save = canvas.save(Canvas.CLIP_SAVE_FLAG);
+    final int save = canvas.save();
 
     boolean drawScrim = false;
 

@@ -1,26 +1,38 @@
 package com.scalosphere.labs.kquran;
 
+import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.AsyncTask;
+//import android.os.AsyncTask;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
+
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.data.QuranDataProvider;
 import com.scalosphere.labs.kquran.database.DatabaseHandler;
@@ -37,17 +49,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-public class QuranDataActivity extends SherlockActivity implements
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
+public class QuranDataActivity extends Activity implements
         DefaultDownloadReceiver.SimpleDownloadListener {
 
    public static final String TAG =
            "com.scalosphere.lab";
    public static final String PAGES_DOWNLOAD_KEY = "PAGES_DOWNLOAD_KEY";
    private static final int MSG_REFRESH_MAX_HEIGHT = 1;
-   public static final String KQ_DB_VERSION_CHECK_URL =  "http://scalosphere.in/SalahTime/kqdversion?kq-version=";//2
+//   public static final String KQ_DB_VERSION_CHECK_URL =  "http://scalosphere.in/SalahTime/kqdversion?kq-version=";//2
 
    private boolean mIsPaused = false;
-   private AsyncTask<Void, Void, Boolean> mCheckPagesTask;
+    CheckPagesAsyncTask mCheckPagesTask;
+//   private AsyncTask<Void, Void, Boolean> mCheckPagesTask;
    private AlertDialog mErrorDialog = null;
    private AlertDialog mPromptForDownloadDialog = null;
    private SharedPreferences mSharedPreferences = null;
@@ -59,19 +76,52 @@ public class QuranDataActivity extends SherlockActivity implements
    private QuranMaxImageView mSplashView;
    private DBUpdateCheckTask updateKDBTask = null;
 
-   @Override
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    private boolean checkPermission() {
+        int writePerm =   ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int readPerm = ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.READ_EXTERNAL_STORAGE);
+        int internetPerm = ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.INTERNET);
+        int accessNetworkPerm = ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.ACCESS_NETWORK_STATE);
+        int readPhonePerm = ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.READ_PHONE_STATE);
+        int wakeLockPerm = ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.WAKE_LOCK);
+
+        return writePerm== PackageManager.PERMISSION_GRANTED && readPerm==PackageManager.PERMISSION_GRANTED && internetPerm==PackageManager.PERMISSION_GRANTED && accessNetworkPerm==PackageManager.PERMISSION_GRANTED && readPhonePerm==PackageManager.PERMISSION_GRANTED && wakeLockPerm==PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==200){
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED
+                    && grantResults[1]==PackageManager.PERMISSION_GRANTED
+                    && grantResults[2]==PackageManager.PERMISSION_GRANTED
+                    && grantResults[3]==PackageManager.PERMISSION_GRANTED
+                    && grantResults[4]==PackageManager.PERMISSION_GRANTED
+                    && grantResults[5]==PackageManager.PERMISSION_GRANTED
+
+                     ){
+                // do Operation
+                }
+            else{
+                Toast.makeText(getApplicationContext(),"Permission Denied grantResults[0]"+grantResults[0]+" grantResults[1]"+grantResults[1],Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    @Override
    public void onCreate(Bundle savedInstanceState) {
-      setTheme(R.style.Theme_Sherlock_NoActionBar);
+      setTheme(R.style.Theme_AppCompat_DayNight_NoActionBar);
 
       super.onCreate(savedInstanceState);
       setContentView(R.layout.splash_screen);
 
-      mSplashView = (QuranMaxImageView)findViewById(R.id.splashview);
-      if (Build.VERSION.SDK_INT >= 14){
-        setSplashViewHardwareAcceleratedICS();
-      }
+      mCheckPagesTask= new CheckPagesAsyncTask(this);
 
-      if (mSplashView != null){
+      mSplashView = (QuranMaxImageView)findViewById(R.id.splashview);
+       setSplashViewHardwareAcceleratedICS();
+
+       if (mSplashView != null){
          try {
             mSplashView.setImageResource(R.drawable.splash);
          }
@@ -79,6 +129,35 @@ public class QuranDataActivity extends SherlockActivity implements
             mSplashView.setBackgroundColor(Color.BLACK);
          }
       }
+
+
+       if(checkPermission()){
+           // do operation
+       }
+       else {
+//           // request Permission in Activity
+//           requestPermissions(getApplicationContext(),
+//                   new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                           Manifest.permission.READ_EXTERNAL_STORAGE},200);
+//           // request Permission in Fragmemt
+//           requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                   Manifest.permission.READ_EXTERNAL_STORAGE}, 200);
+
+           requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                   Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.INTERNET,Manifest.permission.ACCESS_NETWORK_STATE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.WAKE_LOCK}, 200);
+
+
+       }
+
+//        if (Environment.isExternalStorageManager()) {
+//           System.out.println("Suspect one");
+//        } else {
+//            //request for the permission
+//            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+//            Uri uri = Uri.fromParts("package", getPackageName(), null);
+//            intent.setData(uri);
+//            startActivity(intent);
+//        }
 
       /*
         // remove files for debugging purposes
@@ -123,7 +202,7 @@ public class QuranDataActivity extends SherlockActivity implements
                  .putInt(Constants.PREF_NIGHT_MODE_TEXT_BRIGHTNESS,
                          Constants.DEFAULT_NIGHT_MODE_TEXT_BRIGHTNESS)
                  .remove(Constants.PREF_UPGRADE_TO_242)
-                 .putBoolean(Constants.PREF_UPGRADE_TO_243, true).commit();
+                 .putBoolean(Constants.PREF_UPGRADE_TO_243, true).apply();
       }
    }
 
@@ -150,7 +229,6 @@ public class QuranDataActivity extends SherlockActivity implements
 
       if (mSharedPreferences.getInt(
           Constants.PREF_MAX_BITMAP_HEIGHT, -1) == -1){
-        if (Build.VERSION.SDK_INT >= 14){
           int height = mSplashView.getMaxBitmapHeight();
           if (height == -1){
             Log.d(TAG, "retrying to get max height in 500...");
@@ -160,14 +238,15 @@ public class QuranDataActivity extends SherlockActivity implements
 
           Log.d(TAG, "got max height height of " + height);
           mSharedPreferences.edit().putInt(
-              Constants.PREF_MAX_BITMAP_HEIGHT, height).commit();
+              Constants.PREF_MAX_BITMAP_HEIGHT, height).apply();
           QuranScreenInfo.getInstance().setBitmapMaxHeight(height);
-        }
       }
 
-      // check whether or not we need to download
-      mCheckPagesTask = new CheckPagesAsyncTask(this);
-      mCheckPagesTask.execute();
+       mCheckPagesTask.startAsyncTask("checkPages");
+
+//      // check whether or not we need to download
+//      mCheckPagesTask = new CheckPagesAsyncTask(this);
+//      mCheckPagesTask.execute();
    }
    
    @Override
@@ -176,15 +255,13 @@ public class QuranDataActivity extends SherlockActivity implements
       // haven't gotten it already...
       if (mSharedPreferences.getInt(
           Constants.PREF_MAX_BITMAP_HEIGHT, -1) == -1){
-        if (Build.VERSION.SDK_INT >= 14){
           int height = mSplashView.getMaxBitmapHeight();
           if (height > 0){
             Log.d(TAG, "got max height height of " + height);
             mSharedPreferences.edit().putInt(
-              Constants.PREF_MAX_BITMAP_HEIGHT, height).commit();
+              Constants.PREF_MAX_BITMAP_HEIGHT, height).apply();
             QuranScreenInfo.getInstance().setBitmapMaxHeight(height);
           }
-        }
       }
 
       mIsPaused = true;
@@ -208,7 +285,7 @@ public class QuranDataActivity extends SherlockActivity implements
       super.onPause();
    }
 
-   private Handler mHandler = new Handler(){
+   private Handler mHandler = new Handler(Looper.getMainLooper()){
      @Override
      public void handleMessage(Message msg) {
        if (msg.what == MSG_REFRESH_MAX_HEIGHT){
@@ -220,12 +297,13 @@ public class QuranDataActivity extends SherlockActivity implements
          if (height > -1){
            android.util.Log.d(TAG, "in handler, got max height: " + height);
            mSharedPreferences.edit().putInt(
-               Constants.PREF_MAX_BITMAP_HEIGHT, height).commit();
+               Constants.PREF_MAX_BITMAP_HEIGHT, height).apply();
            QuranScreenInfo.getInstance().setBitmapMaxHeight(height);
            // check whether or not we need to download
            if (!mIsPaused) {
-             mCheckPagesTask = new CheckPagesAsyncTask(QuranDataActivity.this);
-             mCheckPagesTask.execute();
+               mCheckPagesTask.startAsyncTask("checkPages");
+//             mCheckPagesTask = new CheckPagesAsyncTask(QuranDataActivity.this);
+//             mCheckPagesTask.execute();
            }
            return;
          }
@@ -234,8 +312,9 @@ public class QuranDataActivity extends SherlockActivity implements
          if (mRefreshHeightTries == 5){
            android.util.Log.d(TAG, "giving up on getting the max height...");
            if (!mIsPaused) {
-             mCheckPagesTask = new CheckPagesAsyncTask(QuranDataActivity.this);
-             mCheckPagesTask.execute();
+               mCheckPagesTask.startAsyncTask("checkPages");
+//             mCheckPagesTask = new CheckPagesAsyncTask(QuranDataActivity.this);
+//             mCheckPagesTask.execute();
            }
          }
          else {
@@ -249,12 +328,12 @@ public class QuranDataActivity extends SherlockActivity implements
    @Override
    public void handleDownloadSuccess(){
       mSharedPreferences.edit()
-         .remove(Constants.PREF_SHOULD_FETCH_PAGES).commit();
+         .remove(Constants.PREF_SHOULD_FETCH_PAGES).apply();
        String active = mSharedPreferences.getString(Constants.PREF_ACTIVE_TRANSLATION, null);
        //Log.i(TAG, "active translation is set? "+active);
        if (TextUtils.isEmpty(active)) {
            boolean hasKanDB= QuranFileUtils.hasKanSearchDatabase(getApplicationContext());
-           mSharedPreferences.edit().putString(Constants.PREF_ACTIVE_TRANSLATION, QuranDataProvider.QURAN_KAN_DATABASE).commit();
+           mSharedPreferences.edit().putString(Constants.PREF_ACTIVE_TRANSLATION, QuranDataProvider.QURAN_KAN_DATABASE).apply();
        }
 
       //TODO commented original code of translation list view
@@ -275,30 +354,24 @@ public class QuranDataActivity extends SherlockActivity implements
       builder.setMessage(errorId);
       builder.setCancelable(false);
       builder.setPositiveButton(R.string.download_retry,
-            new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int id) {
-            dialog.dismiss();
-            mErrorDialog = null;
-            removeErrorPreferences();
-            downloadQuranImages(true);
-         }
-      });
+              (dialog, id) -> {
+                 dialog.dismiss();
+                 mErrorDialog = null;
+                 removeErrorPreferences();
+                 downloadQuranImages(true);
+              });
       
       builder.setNegativeButton(R.string.download_cancel,
-            new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int which) {
-            dialog.dismiss();
-            mErrorDialog = null;
-            removeErrorPreferences();
-            mSharedPreferences.edit().putBoolean(
-                    Constants.PREF_SHOULD_FETCH_PAGES, false)
-                    .commit();
-             //TODO commented original code of translation list view
-             //runListView();
-         }
-      });
+              (dialog, which) -> {
+                 dialog.dismiss();
+                 mErrorDialog = null;
+                 removeErrorPreferences();
+                 mSharedPreferences.edit().putBoolean(
+                         Constants.PREF_SHOULD_FETCH_PAGES, false)
+                         .apply();
+                  //TODO commented original code of translation list view
+                  //runListView();
+              });
       
       mErrorDialog = builder.create();
       mErrorDialog.show();
@@ -308,142 +381,165 @@ public class QuranDataActivity extends SherlockActivity implements
       mSharedPreferences.edit()
       .remove(QuranDownloadService.PREF_LAST_DOWNLOAD_ERROR)
       .remove(QuranDownloadService.PREF_LAST_DOWNLOAD_ITEM)
-      .commit();
+      .apply();
    }
    
-   class CheckPagesAsyncTask extends AsyncTask<Void, Void, Boolean> {
+   class CheckPagesAsyncTask  {
       private final Context mAppContext;
       public CheckPagesAsyncTask(Context context) {
         mAppContext = context.getApplicationContext();
       }
 
-      @Override
-      protected Boolean doInBackground(Void... params) {
-         // intentionally not sleeping because waiting
-         // for the splash screen is not cool.
-         QuranFileUtils.migrateAudio(mAppContext);
-
-         try {
-
-             if (!QuranFileUtils.hasArabicSearchDatabase(mAppContext)){
-                //Log.i(TAG, " Copying Arabic DB from assets in "+ System.currentTimeMillis() + " seconds");
-                QuranFileUtils.copyAssetDB(mAppContext,QuranFileUtils.Arabic_Asset_DB,QuranDataProvider.QURAN_ARABIC_DATABASE);
-             }else{
-                 // Update Arabic db from the assets db within the APK when the kquraan/db text version is older than the APK Db text version
-                 assetsUpdateArabicDB();
-             }
-
-             if (!QuranFileUtils.hasKanSearchDatabase(mAppContext)) {
-                 Log.i(TAG, " Copying Kannada DB from assets in "+ System.currentTimeMillis() + " seconds");
-                 QuranFileUtils.copyAssetDB(mAppContext,QuranFileUtils.Kannada_Asset_DB,QuranDataProvider.QURAN_KAN_DATABASE);
-             }else{
-                 Log.i(TAG, " Update kannada db from the assets db within the APK when the kquraan/db text version is older than the APK Db text version");
-                 // Update kannada db from the assets db within the APK when the kquraan/db text version is older than the APK Db text version
-                 assetsUpdateKannadaDB();
-             }
-
-         }catch (Exception e){
-             Log.e(TAG, " Error in copying DB from Assets to kQuraan/db when the db files do not exist "+e);
-
-             e.printStackTrace();
-         }
-
-        //TODO  for the first release set haveLandscape as true
-        // TODO and comment this code -- boolean haveLandscape = QuranFileUtils.haveAllImages(mAppContext,QuranScreenInfo.getInstance().getTabletWidthParam());
-         if (QuranScreenInfo.getInstance().isTablet(mAppContext)){
-             //new code for KQur'aan
-             boolean haveLandscape =true;
-             // original code commented below
-            //boolean haveLandscape = QuranFileUtils.haveAllImages(mAppContext,
-            //        QuranScreenInfo.getInstance().getTabletWidthParam());
-            boolean havePortrait = QuranFileUtils.haveAllImages(mAppContext,
-                    QuranScreenInfo.getInstance().getWidthParam());
-            mNeedPortraitImages = !havePortrait;
-            mNeedLandscapeImages = !haveLandscape;
-            return haveLandscape && havePortrait;
-         }
-         else {
-            boolean haveAll = QuranFileUtils.haveAllImages(mAppContext,
-                        QuranScreenInfo.getInstance().getWidthParam());
-            mNeedPortraitImages = !haveAll;
-            mNeedLandscapeImages = false;
-            return haveAll;
-         }
-      }
-      
-      @Override
-          protected void onPostExecute(Boolean result) {
+       //-------------------Main logic here-------------------//
+       private void startAsyncTask(String input) {
+           Observable.just(input)
+                   .map(this::doInBackground)
+                   .subscribeOn(Schedulers.io())
+                   .observeOn(AndroidSchedulers.mainThread())
+//                   .doOnSubscribe(this::onPreExecute)
+                   .subscribe(this::onPostExecute);
+       }
 
 
-         mCheckPagesTask = null;
-         mPatchUrl = null;
 
-         if (mIsPaused){ return; }
-         boolean test= mSharedPreferences.getBoolean(Constants.PREF_SHOULD_FETCH_PAGES, false);
+       //do background things here
+       private boolean doInBackground(String data) {
+           // intentionally not sleeping because waiting
+           // for the splash screen is not cool.
+           QuranFileUtils.migrateAudio(mAppContext);
 
-         if (result == null || !result){
-            String lastErrorItem = mSharedPreferences.getString(
-                        QuranDownloadService.PREF_LAST_DOWNLOAD_ITEM, "");
-            if (PAGES_DOWNLOAD_KEY.equals(lastErrorItem)){
-               int lastError = mSharedPreferences.getInt(
-                     QuranDownloadService.PREF_LAST_DOWNLOAD_ERROR, 0);
-               int errorId = ServiceIntentHelper
-                       .getErrorResourceFromErrorCode(lastError, false);
-               showFatalErrorDialog(errorId);
-            }
-            else if (mSharedPreferences.getBoolean(
-                    Constants.PREF_SHOULD_FETCH_PAGES, false)){
-               downloadQuranImages(false);
-            }
-            else {
-               promptForDownload();
-            }
-         }
-         else {
-            // force a check for the images version 3, if it's not
-            // there, download the patch.
-            QuranScreenInfo qsi = QuranScreenInfo.getInstance();
-            String widthParam = qsi.getWidthParam();
-            if (qsi.isTablet(QuranDataActivity.this)){
-               String tabletWidth = qsi.getTabletWidthParam();
-               if ((!QuranFileUtils.isVersion(QuranDataActivity.this,
-                       widthParam, 3)) ||
-                   (!QuranFileUtils.isVersion(QuranDataActivity.this,
-                       tabletWidth, 3))){
-                  widthParam += tabletWidth;
-                  // get patch for both landscape/portrait tablet images
-                  mPatchUrl = QuranFileUtils.getPatchFileUrl(widthParam, 3);
-                  Log.d(TAG, "Downloading patch file from "+mPatchUrl);
-                  promptForDownload();
-                  return;
+           Log.i("Suspect","A1");
+
+           try {
+
+               if (!QuranFileUtils.hasArabicSearchDatabase(mAppContext)){
+                   Log.i("Suspect","B1");
+                   //Log.i(TAG, " Copying Arabic DB from assets in "+ System.currentTimeMillis() + " seconds");
+                   QuranFileUtils.copyAssetDB(mAppContext,QuranFileUtils.Arabic_Asset_DB,QuranDataProvider.QURAN_ARABIC_DATABASE);
+               }else{
+                   Log.i("Suspect","C1");
+                   // Update Arabic db from the assets db within the APK when the kquraan/db text version is older than the APK Db text version
+                   assetsUpdateArabicDB();
                }
-            }
-            else if (!QuranFileUtils.isVersion(QuranDataActivity.this,
-                    widthParam, 3)){
-               // explicitly check whether we need to fix the images
-               mPatchUrl = QuranFileUtils.getPatchFileUrl(widthParam, 3);
-               Log.d(TAG, "Downloading patch file from "+mPatchUrl);
-               promptForDownload();
-               return;
-            }
 
-            long time = mSharedPreferences.getLong(
-                    Constants.PREF_LAST_UPDATED_TRANSLATIONS, 0);
-            Date now = new Date();
-            Log.d(TAG, "checking whether we should update translations..");
-            if (now.getTime() - time > Constants.TRANSLATION_REFRESH_TIME){
-               //Log.i(TAG, "updating translations list...");
-                //TODO handle Kannada DB upgrade
-               Intent intent = new Intent(QuranDataActivity.this,
-                       QuranDownloadService.class);
-               intent.setAction(
-                       QuranDownloadService.ACTION_CHECK_TRANSLATIONS);
-               startService(intent);
-            }
-             //TODO commented original code of translation list view -- temporarily uncommented
-             runListView();
-         }
-      }      
+               Log.i("Suspect","D1");
+
+               if (!QuranFileUtils.hasKanSearchDatabase(mAppContext)) {
+                   Log.i(TAG, " Copying Kannada DB from assets in "+ System.currentTimeMillis() + " seconds");
+                   QuranFileUtils.copyAssetDB(mAppContext,QuranFileUtils.Kannada_Asset_DB,QuranDataProvider.QURAN_KAN_DATABASE);
+               }else{
+                   Log.i(TAG, " Update kannada db from the assets db within the APK when the kquraan/db text version is older than the APK Db text version");
+                   // Update kannada db from the assets db within the APK when the kquraan/db text version is older than the APK Db text version
+                   assetsUpdateKannadaDB();
+               }
+
+           }catch (Exception e){
+               Log.e(TAG, " Error in copying DB from Assets to kQuraan/db when the db files do not exist "+e);
+
+               e.printStackTrace();
+           }
+
+           //TODO  for the first release set haveLandscape as true
+           // TODO and comment this code -- boolean haveLandscape = QuranFileUtils.haveAllImages(mAppContext,QuranScreenInfo.getInstance().getTabletWidthParam());
+           if (QuranScreenInfo.getInstance().isTablet(mAppContext)){
+               //new code for KQur'aan
+               boolean haveLandscape =true;
+               // original code commented below
+               //boolean haveLandscape = QuranFileUtils.haveAllImages(mAppContext,
+               //        QuranScreenInfo.getInstance().getTabletWidthParam());
+               boolean havePortrait = QuranFileUtils.haveAllImages(mAppContext,
+                       QuranScreenInfo.getInstance().getWidthParam());
+               mNeedPortraitImages = !havePortrait;
+               mNeedLandscapeImages = !haveLandscape;
+               return haveLandscape && havePortrait;
+           }
+           else {
+               boolean haveAll = QuranFileUtils.haveAllImages(mAppContext,
+                       QuranScreenInfo.getInstance().getWidthParam());
+               mNeedPortraitImages = !haveAll;
+               mNeedLandscapeImages = false;
+               return haveAll;
+           }
+       }
+
+       //post execution work here
+       private void onPostExecute(boolean result) {
+
+           mPatchUrl = null;
+
+           if (mIsPaused){ return; }
+           boolean test= mSharedPreferences.getBoolean(Constants.PREF_SHOULD_FETCH_PAGES, false);
+
+           if (!result){
+               String lastErrorItem = mSharedPreferences.getString(
+                       QuranDownloadService.PREF_LAST_DOWNLOAD_ITEM, "");
+               if (PAGES_DOWNLOAD_KEY.equals(lastErrorItem)){
+                   int lastError = mSharedPreferences.getInt(
+                           QuranDownloadService.PREF_LAST_DOWNLOAD_ERROR, 0);
+                   int errorId = ServiceIntentHelper
+                           .getErrorResourceFromErrorCode(lastError, false);
+                   showFatalErrorDialog(errorId);
+               }
+               else if (mSharedPreferences.getBoolean(
+                       Constants.PREF_SHOULD_FETCH_PAGES, false)){
+                   downloadQuranImages(false);
+               }
+               else {
+                   promptForDownload();
+               }
+           }
+           else {
+               // force a check for the images version 3, if it's not
+               // there, download the patch.
+               QuranScreenInfo qsi = QuranScreenInfo.getInstance();
+               String widthParam = qsi.getWidthParam();
+               if (qsi.isTablet(QuranDataActivity.this)){
+                   String tabletWidth = qsi.getTabletWidthParam();
+                   if ((!QuranFileUtils.isVersion(QuranDataActivity.this,
+                           widthParam, 3)) ||
+                           (!QuranFileUtils.isVersion(QuranDataActivity.this,
+                                   tabletWidth, 3))){
+                       widthParam += tabletWidth;
+                       // get patch for both landscape/portrait tablet images
+                       mPatchUrl = QuranFileUtils.getPatchFileUrl(widthParam, 3);
+                       Log.d(TAG, "Downloading patch file from "+mPatchUrl);
+                       promptForDownload();
+                       return;
+                   }
+               }
+               else if (!QuranFileUtils.isVersion(QuranDataActivity.this,
+                       widthParam, 3)){
+                   // explicitly check whether we need to fix the images
+                   mPatchUrl = QuranFileUtils.getPatchFileUrl(widthParam, 3);
+                   Log.d(TAG, "Downloading patch file from "+mPatchUrl);
+                   promptForDownload();
+                   return;
+               }
+
+               long time = mSharedPreferences.getLong(
+                       Constants.PREF_LAST_UPDATED_TRANSLATIONS, 0);
+               Date now = new Date();
+               Log.d(TAG, "checking whether we should update translations..");
+               if (now.getTime() - time > Constants.TRANSLATION_REFRESH_TIME){
+                   //Log.i(TAG, "updating translations list...");
+                   //TODO handle Kannada DB upgrade
+                   Intent intent = new Intent(QuranDataActivity.this,
+                           QuranDownloadService.class);
+                   intent.setAction(
+                           QuranDownloadService.ACTION_CHECK_TRANSLATIONS);
+                   startService(intent);
+               }
+               //TODO commented original code of translation list view -- temporarily uncommented
+               runListView();
+           }
+
+       }
+
+//      @Override
+//          protected void onPostExecute(Boolean result) {
+//
+//
+//      }
    }
 
    /**
@@ -536,26 +632,22 @@ public class QuranDataActivity extends SherlockActivity implements
       dialog.setCancelable(false);
 
       dialog.setPositiveButton(R.string.downloadPrompt_ok,
-            new DialogInterface.OnClickListener() {
-         public void onClick(DialogInterface dialog, int id) {
-            dialog.dismiss();
-            mPromptForDownloadDialog = null;
-            mSharedPreferences.edit().putBoolean(
-                    Constants.PREF_SHOULD_FETCH_PAGES, true)
-                    .commit();
-            downloadQuranImages(true);
-         }
-      });
+              (dialog1, id) -> {
+                 dialog1.dismiss();
+                 mPromptForDownloadDialog = null;
+                 mSharedPreferences.edit().putBoolean(
+                         Constants.PREF_SHOULD_FETCH_PAGES, true)
+                         .apply();
+                 downloadQuranImages(true);
+              });
 
-      dialog.setNegativeButton(R.string.downloadPrompt_no, 
-            new DialogInterface.OnClickListener() {
-         public void onClick(DialogInterface dialog, int id) {
-            dialog.dismiss();
-            mPromptForDownloadDialog = null;
-             //TODO commented original code of translation list view
-             runListView();
-          }
-      });
+      dialog.setNegativeButton(R.string.downloadPrompt_no,
+              (dialog12, id) -> {
+                 dialog12.dismiss();
+                 mPromptForDownloadDialog = null;
+                  //TODO commented original code of translation list view
+                  runListView();
+               });
 
       mPromptForDownloadDialog = dialog.create();
       mPromptForDownloadDialog.setTitle(R.string.downloadPrompt_title);
@@ -592,8 +684,8 @@ public class QuranDataActivity extends SherlockActivity implements
        Log.i(TAG, " Assets Update Kannada Db ");
         //if(!mSharedPreferences.getBoolean(Constants.PREF_HAS_KAN_DB_UPDATED_FROM_ASSETS, false)){
             // Initialize Dababase Handlers
-            DatabaseHandler assetsdbHandler = null;
-            DatabaseHandler localdbHandler = null;
+            DatabaseHandler assetsdbHandler;
+            DatabaseHandler localdbHandler;
 
             // 1. Read the  TextVersion of the Kan Db from Kquraan/db
             localdbHandler = new DatabaseHandler(this, QuranDataProvider.QURAN_KAN_DATABASE);
@@ -646,10 +738,10 @@ public class QuranDataActivity extends SherlockActivity implements
                 if (!QuranFileUtils.hasKanSearchDatabase(this)){
                     try {
 
-                        long startTime =System.currentTimeMillis();
+//                        long startTime =System.currentTimeMillis();
                         QuranFileUtils.copyFile(sourceDB,destDB);
                         //Log.i(TAG, " 6. Copied latest Kannada DB from Kquraan dir into kquraan/db " +(System.currentTimeMillis()-startTime) + "Milli seconds");
-                        mSharedPreferences.edit().putBoolean(Constants.PREF_HAS_KAN_DB_UPDATED_FROM_ASSETS, true).commit();
+                        mSharedPreferences.edit().putBoolean(Constants.PREF_HAS_KAN_DB_UPDATED_FROM_ASSETS, true).apply();
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -664,8 +756,8 @@ public class QuranDataActivity extends SherlockActivity implements
        // Log.i(TAG, " Assets Update Arabic Db ");
         if(!mSharedPreferences.getBoolean(Constants.PREF_HAS_Arabic_DB_UPDATED_FROM_ASSETS, false)){
             // Initialize Dababase Handlers
-            DatabaseHandler assetsdbHandler = null;
-            DatabaseHandler localdbHandler = null;
+            DatabaseHandler assetsdbHandler;
+            DatabaseHandler localdbHandler;
 
             // 1. Read the  TextVersion of the Arabic Db from Kquraan/db
             localdbHandler = new DatabaseHandler(this, QuranDataProvider.QURAN_ARABIC_DATABASE);
@@ -677,7 +769,7 @@ public class QuranDataActivity extends SherlockActivity implements
             // 2. Copy Assets Arabic Db to KQuraan dir
             int assetsDbTextVersion = 0;
             try {
-                long startTime =System.currentTimeMillis();
+//                long startTime =System.currentTimeMillis();
                 QuranFileUtils.copyAssetDBLatestVersion(this,QuranFileUtils.Arabic_Asset_DB,QuranDataProvider.QURAN_ARABIC_DATABASE);
                // Log.i(TAG, "2. Copied Arabic DB from " + QuranFileUtils.Arabic_Asset_DB +" to KQuraan in "+ (System.currentTimeMillis()-startTime) +"Milli seconds");
 
@@ -713,10 +805,10 @@ public class QuranDataActivity extends SherlockActivity implements
                 //7. Copy the latest db file into kquraan/db
                 if (!QuranFileUtils.hasArabicSearchDatabase(this)){
                     try {
-                        long startTime =System.currentTimeMillis();
+//                        long startTime =System.currentTimeMillis();
                         QuranFileUtils.copyFile(sourceDB,destDB);
                        // Log.i(TAG, " 6. Copied latest Arabic DB from Kquraan dir into kquraan/db " +(System.currentTimeMillis()-startTime) + "Milli seconds");
-                        mSharedPreferences.edit().putBoolean(Constants.PREF_HAS_Arabic_DB_UPDATED_FROM_ASSETS, true).commit();
+                        mSharedPreferences.edit().putBoolean(Constants.PREF_HAS_Arabic_DB_UPDATED_FROM_ASSETS, true).apply();
 
                     } catch (IOException e) {
                         e.printStackTrace();

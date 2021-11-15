@@ -31,14 +31,14 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.scalosphere.labs.kquran.R;
 
@@ -58,7 +58,7 @@ public class IconPageIndicator extends HorizontalScrollView implements
   private final LinearLayout mIconsLayout;
 
   private ViewPager mViewPager;
-  private OnPageChangeListener mListener;
+  private ViewPager.OnPageChangeListener mListener;
   private OnClickListener mClickListener;
   private Runnable mIconSelector;
   private int mSelectedIndex;
@@ -223,7 +223,7 @@ public class IconPageIndicator extends HorizontalScrollView implements
     }
   }
 
-  public void setOnPageChangeListener(OnPageChangeListener listener) {
+  public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
     mListener = listener;
   }
 

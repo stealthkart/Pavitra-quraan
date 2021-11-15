@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
+import android.util.Log;
 
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.util.QuranFileUtils;
@@ -40,6 +42,27 @@ public class DatabaseHandler {
     if (base == null) return;
     String path = base + File.separator + databaseName;
     //Crashlytics.log("opening database file: " + path);
+
+    File file = new File(path);
+//    if (file.exists())
+//    {
+//      Log.i("suspect","AAAAA1");
+//
+//      if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+//      {
+//        Log.i("suspect","2222222");
+//      }
+//      else
+//      {
+//        Log.i("suspect","33333333");
+//      }
+//
+//    }
+//    else
+//    {
+//      Log.i("suspect","BBBB2");
+//    }
+
     try {
       mDatabase = SQLiteDatabase.openDatabase(path, null,
         SQLiteDatabase.NO_LOCALIZED_COLLATORS);

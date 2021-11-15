@@ -9,10 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.content.LocalBroadcastManager;
+
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -26,7 +23,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.data.QuranDataProvider;
 import com.scalosphere.labs.kquran.data.QuranInfo;
@@ -43,7 +45,7 @@ import com.scalosphere.labs.kquran.util.QuranUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends SherlockFragmentActivity
+public class SearchActivity extends FragmentActivity
     implements DefaultDownloadReceiver.SimpleDownloadListener,
     LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -62,7 +64,7 @@ public class SearchActivity extends SherlockFragmentActivity
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    setTheme(R.style.QuranAndroid);
+    setTheme(R.style.Theme_AppCompat);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.search);
     mMessageView = (TextView) findViewById(R.id.search_area);
@@ -160,6 +162,7 @@ public class SearchActivity extends SherlockFragmentActivity
 
   @Override
   protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
     setIntent(intent);
     handleIntent(intent);
   }

@@ -1,23 +1,25 @@
 package com.scalosphere.labs.kquran.widgets;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.actionbarsherlock.internal.view.menu.MenuBuilder;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.ActionMenuView;
+
 import com.scalosphere.labs.kquran.R;
 
-import static com.actionbarsherlock.ActionBarSherlock.OnMenuItemSelectedListener;
 
 public class AyahToolBar extends ViewGroup implements
     View.OnClickListener, View.OnLongClickListener {
@@ -37,7 +39,7 @@ public class AyahToolBar extends ViewGroup implements
   private AyahToolBarPip mToolBarPip;
   private PipPosition mPipPosition;
   private AyahToolBarPosition mLastAyahToolBarPosition;
-  private OnMenuItemSelectedListener mItemSelectedListener;
+  private ActionMenuView.OnMenuItemClickListener mItemSelectedListener;
 
   public AyahToolBar(Context context) {
     super(context);
@@ -55,6 +57,7 @@ public class AyahToolBar extends ViewGroup implements
     init(context);
   }
 
+  @SuppressLint("RestrictedApi")
   private void init(Context context) {
     mContext = context;
     final Resources resources = context.getResources();
@@ -234,7 +237,7 @@ public class AyahToolBar extends ViewGroup implements
   }
 
   public void setOnItemSelectedListener(
-      OnMenuItemSelectedListener listener) {
+          ActionMenuView.OnMenuItemClickListener listener) {
     mItemSelectedListener = listener;
   }
 
@@ -245,7 +248,7 @@ public class AyahToolBar extends ViewGroup implements
     if (item.hasSubMenu()) {
       showMenu(item.getSubMenu());
     } else if (mItemSelectedListener != null) {
-      mItemSelectedListener.onMenuItemSelected(0, item);
+      mItemSelectedListener.onMenuItemClick(item);
     }
   }
 

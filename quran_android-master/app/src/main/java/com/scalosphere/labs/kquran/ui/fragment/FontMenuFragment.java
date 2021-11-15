@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +16,15 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.ui.PagerActivity;
 import com.scalosphere.labs.kquran.util.ArabicStyle;
 import com.scalosphere.labs.kquran.util.QuranSettings;
 
-public class FontMenuFragment extends SherlockDialogFragment {
+public class FontMenuFragment extends DialogFragment {
     public static final String TAG = "FontMenuFragment";
 
     private String fontFileName;

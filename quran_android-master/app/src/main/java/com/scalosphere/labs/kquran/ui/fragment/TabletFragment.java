@@ -19,7 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import androidx.fragment.app.Fragment;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.common.AyahBounds;
 import com.scalosphere.labs.kquran.common.QuranAyah;
@@ -50,7 +52,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class TabletFragment extends SherlockFragment implements AyahTracker {
+public class TabletFragment extends Fragment implements AyahTracker {
 
   private static final String TAG = "TabletFragment";
   private static final String FIRST_PAGE_EXTRA = "pageNumber";

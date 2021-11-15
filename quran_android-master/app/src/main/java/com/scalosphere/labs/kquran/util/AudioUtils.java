@@ -117,6 +117,7 @@ public class AudioUtils {
       if (qariId > mQariDatabaseFiles.length){ return null; }
 
       String dbname = mQariDatabaseFiles[qariId] + ZIP_EXTENSION;
+      Log.i(TAG, "ssss" + QuranFileUtils.getGaplessDatabaseRootUrl() + "/" + dbname);
       return QuranFileUtils.getGaplessDatabaseRootUrl() + "/" + dbname;
    }
 
@@ -295,15 +296,8 @@ public class AudioUtils {
       String path;
       String sep = File.separator;
 
-      if (android.os.Build.VERSION.SDK_INT >= 8){
-         f = getExternalFilesDirectoryFroyo(context);
-         path = sep + "audio" + sep;
-      }
-      else {
-         f = Environment.getExternalStorageDirectory();
-         path = sep + "Android" + sep + "data" + sep +
-                 context.getPackageName() + sep + "files" + sep + "audio" + sep;
-      }
+      f = getExternalFilesDirectoryFroyo(context);
+      path = sep + "audio" + sep;
 
       if (f == null){ return null; }
       return f.getAbsolutePath() + path;
@@ -311,6 +305,6 @@ public class AudioUtils {
 
   @TargetApi(Build.VERSION_CODES.FROYO)
   private static File getExternalFilesDirectoryFroyo(Context context) {
-    return context.getExternalFilesDir(null);
+    return context.getFilesDir();
   }
 }

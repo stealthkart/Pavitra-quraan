@@ -123,7 +123,7 @@ public class QuranDataProvider extends ContentProvider {
         return db;
       }
       // our active database no longer exists, remove the pref
-      mPrefs.edit().remove(Constants.PREF_ACTIVE_TRANSLATION).commit();
+      mPrefs.edit().remove(Constants.PREF_ACTIVE_TRANSLATION).apply();
     }
 
     try {
@@ -238,7 +238,7 @@ public class QuranDataProvider extends ContentProvider {
 		String lang = (TextUtils.isEmpty(langType))? null : langType;
 		if (lang == null) return null;
 
-		List<String> parts = uri.getPathSegments();
+//		List<String> parts = uri.getPathSegments();
 		//for (String s : parts)
 			//Log.i(TAG, "uri part: " + s);
 

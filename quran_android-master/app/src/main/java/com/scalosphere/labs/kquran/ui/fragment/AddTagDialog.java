@@ -10,10 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import androidx.fragment.app.DialogFragment;
+
 import com.scalosphere.labs.kquran.R;
 
-public class AddTagDialog extends SherlockDialogFragment {
+public class AddTagDialog extends DialogFragment {
    public static final String TAG = "AddTagDialog";
 
    private static final String EXTRA_ID = "id";
@@ -60,25 +61,22 @@ public class AddTagDialog extends SherlockDialogFragment {
 
       builder.setView(layout);
       builder.setPositiveButton(getString(R.string.dialog_ok),
-              new DialogInterface.OnClickListener() {
-                 @Override
-                 public void onClick(DialogInterface dialog, int which) {
-                    Activity activity = getActivity();
-                    if (activity != null &&
-                        activity instanceof OnTagChangedListener){
-                       OnTagChangedListener listener =
-                               (OnTagChangedListener)activity;
-                       String name = nameText.getText().toString();
-                       if (id > 0){
-                          listener.onTagUpdated(id, name);
-                       }
-                       else {
-                          listener.onTagAdded(name);
-                       }
+              (dialog, which) -> {
+                 Activity activity = getActivity();
+                 if (activity != null &&
+                     activity instanceof OnTagChangedListener){
+                    OnTagChangedListener listener =
+                            (OnTagChangedListener)activity;
+                    String name1 = nameText.getText().toString();
+                    if (id > 0){
+                       listener.onTagUpdated(id, name1);
                     }
-
-                    dialog.dismiss();
+                    else {
+                       listener.onTagAdded(name1);
+                    }
                  }
+
+                 dialog.dismiss();
               });
 
       return builder.create();

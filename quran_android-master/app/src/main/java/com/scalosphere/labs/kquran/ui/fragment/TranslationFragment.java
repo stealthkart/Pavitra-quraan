@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import androidx.fragment.app.Fragment;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.common.Response;
 import com.scalosphere.labs.kquran.data.Constants;
@@ -32,7 +34,7 @@ import com.scalosphere.labs.kquran.widgets.TranslationView;
 
 import java.util.Set;
 
-public class TranslationFragment extends SherlockFragment
+public class TranslationFragment extends Fragment
     implements AyahTracker {
   private static final String TAG = "TranslationPageFragment";
   private static final String PAGE_NUMBER_EXTRA = "pageNumber";

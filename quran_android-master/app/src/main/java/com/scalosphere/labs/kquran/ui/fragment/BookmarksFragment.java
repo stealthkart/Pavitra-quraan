@@ -2,9 +2,10 @@ package com.scalosphere.labs.kquran.ui.fragment;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.Menu;
 
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.data.QuranInfo;

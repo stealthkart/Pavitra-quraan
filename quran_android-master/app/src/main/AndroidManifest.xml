@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.scalosphere.labs.kquran" android:versionCode="012"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.scalosphere.labs.kquran" android:versionCode="012"
 	android:versionName="1.1.4"
 	android:installLocation="auto">
 	
    <supports-screens android:largeScreens="true" android:xlargeScreens="true" />
 
    <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+       tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
    <application android:icon="@drawable/icon" android:label="@string/app_name"
                 android:name="com.scalosphere.labs.kquran.QuranApplication"
+                android:requestLegacyExternalStorage="true"
+                android:usesCleartextTraffic="true"
                 android:allowBackup="true">
 		<activity android:name="com.scalosphere.labs.kquran.QuranDataActivity"
 			android:configChanges="keyboardHidden|orientation"

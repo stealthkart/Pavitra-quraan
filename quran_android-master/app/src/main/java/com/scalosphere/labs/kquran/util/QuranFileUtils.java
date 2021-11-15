@@ -21,6 +21,7 @@ import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
 public class QuranFileUtils {
   private static final String TAG = "QuranFileUtils";
@@ -30,7 +31,15 @@ public class QuranFileUtils {
    private static final String QURAN_BASE = "quran_android/";
   */
 
-  public static final String IMG_HOST = "http://www.pavitra-quraan.com/" ;
+  public static final String IMG_HOST = "https://www.pavitra-quraan.com/" ;
+//  public static final String IMG_HOST = "https://kq.mufi.io/s/taACfBg2qz9Zf6r/" ;
+//
+//  public static final String strSufffix="download?path=%2F";
+//  public static final String strPrefix="&files=";
+//
+//  public static final String strSufffixFile="?path=%2F";
+//  public static final String strPrefixFile="&openfile=";
+
   private static final String QURAN_BASE = "kquraan/";
   private static final String DATABASE_DIRECTORY = "db";
   private static final int BUFF_SIZE = 1024;
@@ -89,8 +98,8 @@ public class QuranFileUtils {
       return false;
     }
 
-    String state = Environment.getExternalStorageState();
-    if (state.equals(Environment.MEDIA_MOUNTED)) {
+//    String state = Environment.getExternalStorageState();
+//    if (state.equals(Environment.MEDIA_MOUNTED)) {
       File dir = new File(quranDirectory + File.separator);
       if (dir.isDirectory()) {
         String[] fileList = dir.list();
@@ -107,7 +116,7 @@ public class QuranFileUtils {
       } else {
         QuranFileUtils.makeQuranDirectory(context);
       }
-    }
+//    }
     return false;
   }
 
@@ -117,10 +126,10 @@ public class QuranFileUtils {
     return "page" + nf.format(p) + ".png";
   }
 
-  public static boolean isSDCardMounted() {
-    String state = Environment.getExternalStorageState();
-    return state.equals(Environment.MEDIA_MOUNTED);
-  }
+//  public static boolean isSDCardMounted() {
+//    String state = Environment.getExternalStorageState();
+//    return state.equals(Environment.MEDIA_MOUNTED);
+//  }
 
   public static Response getImageFromSD(Context context, String filename) {
     return getImageFromSD(context, null, filename);
@@ -204,7 +213,7 @@ public class QuranFileUtils {
         + instance.getWidthParam() + "/"
         + filename;
 
-    //Log.i(TAG, "want to download: " + urlString);
+    Log.i(TAG, "ssss" + urlString);
     //System.out.println(" Img url is "+urlString);
 
     InputStream is = null;
@@ -308,12 +317,12 @@ public class QuranFileUtils {
   public static String getQuranBaseDirectory(Context context) {
     String basePath = QuranSettings.getAppCustomLocation(context);
 
-    if (!isSDCardMounted()) {
-      if (basePath == null || basePath.equals(
-          Environment.getExternalStorageDirectory().getAbsolutePath())){
-        basePath = null;
-      }
-    }
+//    if (!isSDCardMounted()) {
+//      if (basePath == null || basePath.equals(
+//              context.getFilesDir().getAbsolutePath())){
+//        basePath = null;
+//      }
+//    }
 
     if (basePath != null) {
       if (!basePath.endsWith("/")){
@@ -380,10 +389,13 @@ public class QuranFileUtils {
   public static String getZipFileUrl(String widthParam) {
     String url = IMG_HOST;
     url += "images" + widthParam + ".zip";
+    Log.i(TAG, "ssss" + url);
     return url;
   }
 
   public static String getPatchFileUrl(String widthParam, int toVersion) {
+    Log.i(TAG, "ssss" + IMG_HOST + "patch" +
+            widthParam + "_v" + toVersion + ".zip");
     return IMG_HOST + "patch" +
         widthParam + "_v" + toVersion + ".zip";
   }
@@ -408,7 +420,8 @@ public class QuranFileUtils {
 
   public static String getAyaPositionFileUrl(String widthParam) {
     String url = IMG_HOST + "width" + widthParam;
-    url += "/ayahinfo" + widthParam + ".zip";
+    url += "ayahinfo" + widthParam + ".zip";
+    Log.i(TAG, "ssss" + url);
     return url;
   }
 
@@ -467,12 +480,12 @@ public class QuranFileUtils {
   }
 
   public static String getArabicSearchDatabaseUrl() {
-    return IMG_HOST + DATABASE_DIRECTORY + "/" +
+    return IMG_HOST + DATABASE_DIRECTORY  +
         QuranDataProvider.QURAN_ARABIC_DATABASE;
   }
 
   public static String getKanSearchDatabaseUrl() {
-        return IMG_HOST + DATABASE_DIRECTORY + "/" +
+        return IMG_HOST  + DATABASE_DIRECTORY  +
                 QuranDataProvider.QURAN_KAN_DATABASE;
   }
 
@@ -619,9 +632,15 @@ public class QuranFileUtils {
         dbDirExists= QuranFileUtils.makeQuranDatabaseDirectory(context);
         //Log.i(TAG, "dbDirExists  "+dbDirExists);
         String dbFile = dbDir + File.separator + destFileName;
+
+        if(!new File(dbDir).exists())
+          new File(dbDir).mkdirs();
+
         File f = new File(dbFile);
+
         if (!f.exists()) {
             //Log.i(TAG, "file doesn't exist "+f.getAbsolutePath());
+//            f.mkdirs();
             f.createNewFile();
             OutputStream os = new FileOutputStream(f);
 

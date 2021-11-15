@@ -82,8 +82,8 @@
         &lt;br/>Unfortunately, Android versions before 4.0 do not support these fonts, and there is
         little we can do to help with this.
     </string>
-	<string name="search_hint">ಹುಡುಕಿ...</string>
-	<string name="quranSearchType">ಸೂಕ್ತಿ ಹುಡುಕಿ...</string>
+	<string name="search_hint" translatable="false">ಹುಡುಕಿ...</string>
+	<string name="quranSearchType" translatable="false">ಸೂಕ್ತಿ ಹುಡುಕಿ...</string>
 
     <!-- Shown above search results when we receive a search request. -->
     <plurals name="search_results">
@@ -92,46 +92,46 @@
     </plurals>
 
     <!-- Search messages -->
-    <string name="found_in_sura">ಸಿಕ್ಕಿದ ಅಧ್ಯಾಯ</string>
-    <string name="no_results"> \"%s\" ಯಾವ ಸೂಕ್ತಿಯಲ್ಲೂ ಸಿಕ್ಕಿಲ್ಲ</string>
-    <string name="no_active_translation">You have no active translation set. Please set an active translation first and then search again.</string>
-    <string name="translation_settings">Translation Settings</string>
-    <string name="no_arabic_search_available">You have not downloaded the Arabic search pack.  Please ಡೌನ್ ಲೋಡ್  it and try your search again.</string>
-    <string name="get_arabic_search_db">Get Arabic Search Database</string>
-    <string name="no_kannada_search_available">You have not downloaded the Kannada search pack.  Please ಡೌನ್ ಲೋಡ್  it and try your search again.</string>
-    <string name="get_kannada_search_db">Get Kannada Search Database</string>
+    <string name="found_in_sura" translatable="false">ಸಿಕ್ಕಿದ ಅಧ್ಯಾಯ</string>
+    <string name="no_results" translatable="false"> \"%s\" ಯಾವ ಸೂಕ್ತಿಯಲ್ಲೂ ಸಿಕ್ಕಿಲ್ಲ</string>
+    <string name="no_active_translation" translatable="false">You have no active translation set. Please set an active translation first and then search again.</string>
+    <string name="translation_settings" translatable="false">Translation Settings</string>
+    <string name="no_arabic_search_available" translatable="false">You have not downloaded the Arabic search pack.  Please ಡೌನ್ ಲೋಡ್  it and try your search again.</string>
+    <string name="get_arabic_search_db" translatable="false">Get Arabic Search Database</string>
+    <string name="no_kannada_search_available" translatable="false">You have not downloaded the Kannada search pack.  Please ಡೌನ್ ಲೋಡ್  it and try your search again.</string>
+    <string name="get_kannada_search_db" translatable="false">Get Kannada Search Database</string>
         
     <!-- Quran Preference Activity -->
-    <string name="prefs_category_navigation">Navigation</string>
-    <string name="prefs_volume_key_navigation_title">Volume key navigation</string>
-    <string name="prefs_volume_key_navigation_summary">Navigate between pages using volume keys</string>
-    <string name="prefs_category_reading">Reading Preferences</string>
-    <string name="prefs_category_translation">Translation Preferences</string>
-    <string name="prefs_category_display_settings">Display Settings</string>
-    <string name="prefs_use_arabic_title">Arabic Mode</string>
-    <string name="prefs_use_arabic_summary_on">Application will be localized to Arabic (restart required)</string>
-    <string name="prefs_use_arabic_reshaper_title">Use Arabic Reshaper</string>
-    <string name="prefs_use_arabic_reshaper_summary_on">If your Arabic text is backwards, uncheck this option.</string>
-    <string name="prefs_use_arabic_reshaper_summary_off">If your Arabic text is not joined, check this option to fix it.</string>
-    <string name="prefs_new_background_title">New background</string>
-    <string name="prefs_lock_orientation_title">Lock screen orientation</string>
-    <string name="prefs_lock_orientation_summary_on">ಕುರ್ ಆನ್ ಪುಟ will be in fixed orientation mode</string>
-    <string name="prefs_lock_orientation_summary_off">Adaptive to current orientation mode</string>
-    <string name="prefs_landscape_orientation_title">Landscape orientation</string>
-    <string name="prefs_landscape_orientation_summary_on">Landscape orientation will be used</string>
-    <string name="prefs_landscape_orientation_summary_off">Portrait orientation will be used</string>
-    <string name="prefs_night_mode_title">Night mode</string>
-    <string name="prefs_night_mode_summary">Dark background and light fonts will be used</string>
-    <string name="prefs_night_mode_text_brightness_title">Text Brightness</string>
-    <string name="prefs_night_mode_text_brightness_summary">Brightness of the text when night mode is active</string>
-    <string name="prefs_overlay_page_info_title">Show ಪುಟ info (beta)</string>
-    <string name="prefs_overlay_page_info_summary">Overlay ಪುಟ number, sura name, and juz\' number while reading</string>
-    <string name="prefs_display_marker_title">Display marker popups</string>
-    <string name="prefs_display_marker_summary">Display popup on reaching juz\', hizb, etc.</string>
-    <string name="prefs_highlight_bookmarks_title">Highlight ಗುರುತು(Bookmark)</string>
-    <string name="prefs_highlight_bookmarks_summary">Highlight ಗುರುತು(Bookmark) ayahs while reading</string>
-    <string name="prefs_translation_text_title">Translation text size</string>
-    <string name="prefs_translations">Translations</string>
+    <string name="prefs_category_navigation" translatable="false">Navigation</string>
+    <string name="prefs_volume_key_navigation_title" translatable="false">Volume key navigation</string>
+    <string name="prefs_volume_key_navigation_summary" translatable="false">Navigate between pages using volume keys</string>
+    <string name="prefs_category_reading" translatable="false">Reading Preferences</string>
+    <string name="prefs_category_translation" translatable="false">Translation Preferences</string>
+    <string name="prefs_category_display_settings" translatable="false">Display Settings</string>
+    <string name="prefs_use_arabic_title" translatable="false">Arabic Mode</string>
+    <string name="prefs_use_arabic_summary_on" translatable="false">Application will be localized to Arabic (restart required)</string>
+    <string name="prefs_use_arabic_reshaper_title" translatable="false">Use Arabic Reshaper</string>
+    <string name="prefs_use_arabic_reshaper_summary_on" translatable="false">If your Arabic text is backwards, uncheck this option.</string>
+    <string name="prefs_use_arabic_reshaper_summary_off" translatable="false">If your Arabic text is not joined, check this option to fix it.</string>
+    <string name="prefs_new_background_title" translatable="false">New background</string>
+    <string name="prefs_lock_orientation_title" translatable="false">Lock screen orientation</string>
+    <string name="prefs_lock_orientation_summary_on" translatable="false">ಕುರ್ ಆನ್ ಪುಟ will be in fixed orientation mode</string>
+    <string name="prefs_lock_orientation_summary_off" translatable="false">Adaptive to current orientation mode</string>
+    <string name="prefs_landscape_orientation_title" translatable="false">Landscape orientation</string>
+    <string name="prefs_landscape_orientation_summary_on" translatable="false">Landscape orientation will be used</string>
+    <string name="prefs_landscape_orientation_summary_off" translatable="false">Portrait orientation will be used</string>
+    <string name="prefs_night_mode_title" translatable="false">Night mode</string>
+    <string name="prefs_night_mode_summary" translatable="false">Dark background and light fonts will be used</string>
+    <string name="prefs_night_mode_text_brightness_title" translatable="false">Text Brightness</string>
+    <string name="prefs_night_mode_text_brightness_summary" translatable="false">Brightness of the text when night mode is active</string>
+    <string name="prefs_overlay_page_info_title" translatable="false">Show ಪುಟ info (beta)</string>
+    <string name="prefs_overlay_page_info_summary" translatable="false">Overlay ಪುಟ number, sura name, and juz\' number while reading</string>
+    <string name="prefs_display_marker_title" translatable="false">Display marker popups</string>
+    <string name="prefs_display_marker_summary" translatable="false">Display popup on reaching juz\', hizb, etc.</string>
+    <string name="prefs_highlight_bookmarks_title" translatable="false">Highlight ಗುರುತು(Bookmark)</string>
+    <string name="prefs_highlight_bookmarks_summary" translatable="false">Highlight ಗುರುತು(Bookmark) ayahs while reading</string>
+    <string name="prefs_translation_text_title" translatable="false">Translation text size</string>
+    <string name="prefs_translations" translatable="false">Translations</string>
     <string name="prefs_translations_summary">ಡೌನ್ ಲೋಡ್  and manage translations</string>
     <string name="prefs_ayah_before_translation_title">Ayah before Translation</string>
     <string name="prefs_ayah_before_translation_summary">Show ayah in Arabic above the translation</string>
@@ -213,49 +213,49 @@
     <string name="download_error_invalid_download">ಡೌನ್ಲೋಡ್ ಫೈಲ್ ಕೆಟ್ಟುಹೋಗಿದೆ</string>
     <string name="download_error_invalid_download_retry">ಫೈಲ್ ಕೆಟ್ಟುಹೋಗಿದೆ,  ಪುನಃ ಡೌನ್ಲೋಡ್ ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದೇವೆ</string>
     <string name="download_error_network_retry">ಇಂಟರ್ನೆಟ್  ದೋಷ, ಪುನರಾರಂಭಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದೇವೆ&#8230;</string>
-    <string name="notification_download_canceled">ಡೌನ್ಲೋಡ್ ರದ್ದುಮಾಡಲಾಗಿದೆ</string>
-    <string name="download_non_wifi_prompt">ನೀವು Wi-Fi ನಲ್ಲಿ ಇಲ್ಲ. ಆದರೂ ದಶಮಾಂಶ ಡೌನ್ಲೋಡ್ ಮಾಡುವಿರಾ?</string>
+    <string name="notification_download_canceled" translatable="false">ಡೌನ್ಲೋಡ್ ರದ್ದುಮಾಡಲಾಗಿದೆ</string>
+    <string name="download_non_wifi_prompt" translatable="false">ನೀವು Wi-Fi ನಲ್ಲಿ ಇಲ್ಲ. ಆದರೂ ದಶಮಾಂಶ ಡೌನ್ಲೋಡ್ ಮಾಡುವಿರಾ?</string>
     
     <!-- downloading dialogs -->
-    <string name="download_progress">Downloaded %1$s / %2$s</string>
-    <string name="process_progress">ಫೈಲ್ ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ </string>
-    <string name="download_retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
-    <string name="download_cancel">ರದ್ದುಮಾಡಿ</string>
-    <string name="download_extra_data">ಕುರ್ ಆನಿನ ಸೂಕ್ತಿಗಳನ್ನು ಶೇರ್ ಮಾಡಲು ಒಂದು ಸಣ್ಣ ಅಪ್ಡೇಟ್ ಮಾಡಬೇಕಾಗಿದೆ. ನೀವು ಈಗ ಅಪ್ಡೇಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?</string>
+    <string name="download_progress" translatable="false">Downloaded %1$s / %2$s</string>
+    <string name="process_progress" translatable="false">ಫೈಲ್ ಸಂಸ್ಕರಿಸಲಾಗುತ್ತಿದೆ </string>
+    <string name="download_retry" translatable="false">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="download_cancel" translatable="false">ರದ್ದುಮಾಡಿ</string>
+    <string name="download_extra_data" translatable="false">ಕುರ್ ಆನಿನ ಸೂಕ್ತಿಗಳನ್ನು ಶೇರ್ ಮಾಡಲು ಒಂದು ಸಣ್ಣ ಅಪ್ಡೇಟ್ ಮಾಡಬೇಕಾಗಿದೆ. ನೀವು ಈಗ ಅಪ್ಡೇಟ್ ಮಾಡಲು ಬಯಸುವಿರಾ?</string>
 
     <!-- translation database stuff -->
-    <string name="remove_dlg_title">Remove Translation?</string>
-    <string name="remove_dlg_msg">Are you sure you would like to remove the %1$s?</string>
-    <string name="error_getting_translation_list">Unable to ಡೌನ್ ಲೋಡ್  the list of translations.  Please try again later.</string>
-    <string name="search_data">ಹುಡುಕಿ...</string>
-    <string name="need_translation">You don\'t have any translations/tafaseer downloaded yet.</string>
-    <string name="get_translations">Get Translations</string>
+    <string name="remove_dlg_title" translatable="false">Remove Translation?</string>
+    <string name="remove_dlg_msg" translatable="false">Are you sure you would like to remove the %1$s?</string>
+    <string name="error_getting_translation_list" translatable="false">Unable to ಡೌನ್ ಲೋಡ್  the list of translations.  Please try again later.</string>
+    <string name="search_data" translatable="false">ಹುಡುಕಿ...</string>
+    <string name="need_translation" translatable="false">You don\'t have any translations/tafaseer downloaded yet.</string>
+    <string name="get_translations" translatable="false">Get Translations</string>
 
     <!-- help -->
-    <string name="email_us">ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳನ್ನು  apps@scalosphere.com ಗೆ ಇಮೇಲ್ ಮಾಡಬಹುದು.
+    <string name="email_us" translatable="false">ನಿಮ್ಮ ಪ್ರಶ್ನೆಗಳನ್ನು  apps@scalosphere.com ಗೆ ಇಮೇಲ್ ಮಾಡಬಹುದು.
     </string>
 
     <!-- sura metainfo -->
-    <string name="makki">ಮಕ್ಕಾದಲ್ಲಿ</string>
-    <string name="madani">ಮದೀನಾದಲ್ಲಿ</string>
+    <string name="makki" translatable="false">ಮಕ್ಕಾದಲ್ಲಿ</string>
+    <string name="madani" translatable="false">ಮದೀನಾದಲ್ಲಿ</string>
     <plurals name="verses">
         <item quantity="one">ಒಂದು ಸೂಕ್ತಿ</item>
         <item quantity="other">%s ಸೂಕ್ತಿಗಳು </item>
     </plurals>
 
     <!-- ayah action panel -->
-    <string name="ayah_tags_page">ಟ್ಯಾಗ್</string>
-    <string name="ayah_translation_page">Translation</string>
-    <string name="play_from">From</string>
-    <string name="play_to">To</string>
-    <string name="play_options">Options</string>
-    <string name="play_restrict_range">Only play the above verses</string>
-    <string name="repeat_verses_range">Repeat set of verses:</string>
-    <string name="repeat_each_verse">Repeat each verse:</string>
-    <string name="play_apply">Apply</string>
-    <string name="play_apply_and_play">Apply and Play</string>
-    <string name="play">Play</string>
-    <string name="stop">Stop</string>
+    <string name="ayah_tags_page" translatable="false">ಟ್ಯಾಗ್</string>
+    <string name="ayah_translation_page" translatable="false">Translation</string>
+    <string name="play_from" translatable="false">From</string>
+    <string name="play_to" translatable="false">To</string>
+    <string name="play_options" translatable="false">Options</string>
+    <string name="play_restrict_range" translatable="false">Only play the above verses</string>
+    <string name="repeat_verses_range" translatable="false">Repeat set of verses:</string>
+    <string name="repeat_each_verse" translatable="false">Repeat each verse:</string>
+    <string name="play_apply" translatable="false">Apply</string>
+    <string name="play_apply_and_play" translatable="false">Apply and Play</string>
+    <string name="play" translatable="false">Play</string>
+    <string name="stop" translatable="false">Stop</string>
 
     <string-array name="repeatValues">
         <item>never</item>
@@ -266,37 +266,37 @@
     </string-array>
 
     <!-- long press -->
-    <string name="bookmark_ayah">ಈ ಸೂಕ್ತಿಯನ್ನು ಗುರುತುಮಾಡಿ</string>
-    <string name="unbookmark_ayah">ಈ ಸೂಕ್ತಿಯ ಗುರುತನ್ನು ತೆಗೆದುಹಾಕಿ</string>
-    <string name="tag_ayah">Tag this Ayah</string>
-    <string name="share_ayah">ಸೂಕ್ತಿಯ ಲಿಂಕನ್ನು ಶೇರ್ ಮಾಡಿ</string>
-    <string name="share_ayah_text">ಸೂಕ್ತಿಯನ್ನು ಶೇರ್ ಮಾಡಿ</string>
-    <string name="translation_ayah">ಸೂಕ್ತಿಯ ಅನುವಾದ/ತಫ್ಸೀರ್</string>
-    <string name="foot_notes">ಟಿಪ್ಪಣಿಗಳು</string>
-    <string name="no_foot_notes">ಈ ಪುಟದಲ್ಲಿ ಟಿಪ್ಪಣಿಗಳು ಇಲ್ಲ</string>
-    <string name="play_from_here">Play from Here</string>
-    <string name="via_string">via ಪವಿತ್ರ ಕುರ್ ಆನ್ (Pavitra Qur\'aan)</string>
-    <string name="search_key">ಸೂಕ್ತಿಯನ್ನು ಹುಡುಕಲು \'ಹುಡುಕಿ\' ಕೀಲಿಯನ್ನು ಒತ್ತಿ</string>
-    <string name="copy_ayah">ಸೂಕ್ತಿಯನ್ನು ಕಾಪಿ ಮಾಡಿ</string>
-    <string name="ayah_copied_popup">ಸೂಕ್ತಿ ಕಾಪಿ ಆಯಿತು</string>
-    <string name="footnotes_copied_popup">ಟಿಪ್ಪಣಿಗಳು ಕಾಪಿ ಆಯಿತು</string>
-    <string name="show_more">ಹೆಚ್ಚು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸಿ</string>
-    <string name="bismillah">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ </string>
+    <string name="bookmark_ayah" translatable="false">ಈ ಸೂಕ್ತಿಯನ್ನು ಗುರುತುಮಾಡಿ</string>
+    <string name="unbookmark_ayah" translatable="false">ಈ ಸೂಕ್ತಿಯ ಗುರುತನ್ನು ತೆಗೆದುಹಾಕಿ</string>
+    <string name="tag_ayah" translatable="false">Tag this Ayah</string>
+    <string name="share_ayah" translatable="false">ಸೂಕ್ತಿಯ ಲಿಂಕನ್ನು ಶೇರ್ ಮಾಡಿ</string>
+    <string name="share_ayah_text" translatable="false">ಸೂಕ್ತಿಯನ್ನು ಶೇರ್ ಮಾಡಿ</string>
+    <string name="translation_ayah" translatable="false">ಸೂಕ್ತಿಯ ಅನುವಾದ/ತಫ್ಸೀರ್</string>
+    <string name="foot_notes" translatable="false">ಟಿಪ್ಪಣಿಗಳು</string>
+    <string name="no_foot_notes" translatable="false">ಈ ಪುಟದಲ್ಲಿ ಟಿಪ್ಪಣಿಗಳು ಇಲ್ಲ</string>
+    <string name="play_from_here" translatable="false">Play from Here</string>
+    <string name="via_string" translatable="false">via ಪವಿತ್ರ ಕುರ್ ಆನ್ (Pavitra Qur\'aan)</string>
+    <string name="search_key" translatable="false">ಸೂಕ್ತಿಯನ್ನು ಹುಡುಕಲು \'ಹುಡುಕಿ\' ಕೀಲಿಯನ್ನು ಒತ್ತಿ</string>
+    <string name="copy_ayah" translatable="false">ಸೂಕ್ತಿಯನ್ನು ಕಾಪಿ ಮಾಡಿ</string>
+    <string name="ayah_copied_popup" translatable="false">ಸೂಕ್ತಿ ಕಾಪಿ ಆಯಿತು</string>
+    <string name="footnotes_copied_popup" translatable="false">ಟಿಪ್ಪಣಿಗಳು ಕಾಪಿ ಆಯಿತು</string>
+    <string name="show_more" translatable="false">ಹೆಚ್ಚು ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸಿ</string>
+    <string name="bismillah" translatable="false">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ </string>
 
     <!-- bookmarks & tags contextual action bar -->
-    <string name="delete_bookmark">ಗುರುತನ್ನು ಅಳಿಸಿ</string>
-    <string name="tag_bookmark">Tag ಗುರುತು(Bookmark)</string>
-    <string name="delete_tag">Delete Tag</string>
-    <string name="edit_tag">Edit Tag</string>
-    <string name="new_tag">New Tag</string>
-    <string name="not_tagged">Not Tagged</string>
+    <string name="delete_bookmark" translatable="false">ಗುರುತನ್ನು ಅಳಿಸಿ</string>
+    <string name="tag_bookmark" translatable="false">Tag ಗುರುತು(Bookmark)</string>
+    <string name="delete_tag" translatable="false">Delete Tag</string>
+    <string name="edit_tag" translatable="false">Edit Tag</string>
+    <string name="new_tag" translatable="false">New Tag</string>
+    <string name="not_tagged" translatable="false">Not Tagged</string>
     
     <!-- tag dialog -->
-    <string name="tag_dlg_title">Tag</string>
-    <string name="tag_name">Name</string>
+    <string name="tag_dlg_title" translatable="false">Tag</string>
+    <string name="tag_name" translatable="false">Name</string>
     
     <!-- bookmark & tag list -->
-    <string name="bookmarks_list_empty">ಯಾವುದೇ ಗುರುತು ಇಲ್ಲ</string>
-    <string name="tags_list_empty">No Tags</string>
+    <string name="bookmarks_list_empty" translatable="false">ಯಾವುದೇ ಗುರುತು ಇಲ್ಲ</string>
+    <string name="tags_list_empty" translatable="false">No Tags</string>
 
 </resources>

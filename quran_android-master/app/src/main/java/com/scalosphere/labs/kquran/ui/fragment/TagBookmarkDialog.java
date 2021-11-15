@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.FragmentActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +21,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.SuraAyah;
 import com.scalosphere.labs.kquran.database.BookmarksDBAdapter;
@@ -30,7 +33,7 @@ import com.scalosphere.labs.kquran.ui.helpers.BookmarkHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagBookmarkDialog extends SherlockDialogFragment {
+public class TagBookmarkDialog extends DialogFragment {
    public static final String TAG = "TagBookmarkDialog";
 
    private boolean mMadeChanges = false;
@@ -150,27 +153,25 @@ public class TagBookmarkDialog extends SherlockDialogFragment {
       final ListView listview = new ListView(activity);
       listview.setAdapter(mAdapter);
       listview.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-      listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            BookmarksDBAdapter.Tag tag = (BookmarksDBAdapter.Tag)mAdapter.getItem(position);
-            if (tag.mId >= 0) {
-               tag.toggle();
-               setMadeChanges();
+      listview.setOnItemClickListener((parent, view, position, id) -> {
+         BookmarksDBAdapter.Tag tag = (BookmarksDBAdapter.Tag)mAdapter.getItem(position);
+         if (tag.mId >= 0) {
+            tag.toggle();
+            setMadeChanges();
+         }
+         else if (tag.mId == -1) {
+            Context context = getActivity();
+            if (context != null &&
+                   context instanceof OnBookmarkTagsUpdateListener) {
+               ((OnBookmarkTagsUpdateListener)context).onAddTagSelected();
             }
-            else if (tag.mId == -1) {
-	           Context context = getActivity();
-	           if (context != null &&
-                      context instanceof OnBookmarkTagsUpdateListener) {
-                  ((OnBookmarkTagsUpdateListener)context).onAddTagSelected();
-	           }
-            }
+         }
 
-            if (view.getTag() != null){
-               Object viewTag = view.getTag();
-               if (viewTag instanceof ViewHolder){
-                  ViewHolder holder = (ViewHolder)viewTag;
-                  holder.checkBox.setChecked(tag.isChecked());
-               }
+         if (view.getTag() != null){
+            Object viewTag = view.getTag();
+            if (viewTag instanceof ViewHolder){
+               ViewHolder holder = (ViewHolder)viewTag;
+               holder.checkBox.setChecked(tag.isChecked());
             }
          }
       });

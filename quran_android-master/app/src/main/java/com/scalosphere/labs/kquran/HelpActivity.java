@@ -1,19 +1,20 @@
 package com.scalosphere.labs.kquran;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
 
-public class HelpActivity extends SherlockActivity {
+
+public class HelpActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
-    setTheme(R.style.Theme_Sherlock);
+    setTheme(R.style.Theme_AppCompat);
     super.onCreate(savedInstanceState);
 
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    this.getActionBar().setDisplayShowHomeEnabled(true);
+    this.getActionBar().setDisplayHomeAsUpEnabled(true);
 
     setContentView(R.layout.help);
 

@@ -13,14 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import androidx.fragment.app.DialogFragment;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.ui.PagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FootnotesPopup extends SherlockDialogFragment {
+public class FootnotesPopup extends DialogFragment {
     public static final String TAG = "FootnotesPopup";
     private View mFootnotesView;
     private Activity mActivity;

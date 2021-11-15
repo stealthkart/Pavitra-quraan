@@ -2,11 +2,12 @@ package com.scalosphere.labs.kquran.ui.fragment;
 
 import android.os.Bundle;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import androidx.fragment.app.Fragment;
+
 import com.scalosphere.labs.kquran.data.SuraAyah;
 import com.scalosphere.labs.kquran.ui.PagerActivity;
 
-public abstract class AyahActionFragment extends SherlockFragment {
+public abstract class AyahActionFragment extends Fragment {
 
   protected SuraAyah mStart;
   protected SuraAyah mEnd;

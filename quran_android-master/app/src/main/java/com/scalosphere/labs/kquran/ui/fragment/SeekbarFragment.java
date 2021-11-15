@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +14,15 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.ui.PagerActivity;
 import com.scalosphere.labs.kquran.util.QuranSettings;
 
-public class SeekbarFragment extends SherlockDialogFragment implements
+public class SeekbarFragment extends DialogFragment implements
         SeekBar.OnSeekBarChangeListener {
     //private static final String androidns = "http://schemas.android.com/apk/res/android";
 

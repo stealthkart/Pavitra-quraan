@@ -11,7 +11,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import androidx.fragment.app.Fragment;
+
+
 import com.scalosphere.labs.kquran.QuranApplication;
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.Constants;
@@ -22,7 +24,7 @@ import com.scalosphere.labs.kquran.ui.helpers.QuranRow;
 import com.scalosphere.labs.kquran.util.QuranSettings;
 import com.scalosphere.labs.kquran.util.QuranUtils;
 
-public class  SuraListFragment extends SherlockFragment {
+public class  SuraListFragment extends Fragment {
 
   private ListView mListView;
   private QuranListAdapter mAdapter;

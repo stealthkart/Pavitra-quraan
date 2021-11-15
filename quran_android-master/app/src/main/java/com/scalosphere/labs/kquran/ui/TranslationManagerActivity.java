@@ -9,23 +9,26 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
+
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Window;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.common.TranslationItem;
 import com.scalosphere.labs.kquran.data.Constants;
@@ -40,7 +43,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TranslationManagerActivity extends SherlockActivity
+public class TranslationManagerActivity extends AppCompatActivity
         implements DefaultDownloadReceiver.SimpleDownloadListener,
                    TranslationListTask.TranslationsUpdatedListener {
    public static final String TAG = "TranslationManager";
@@ -63,7 +66,7 @@ public class TranslationManagerActivity extends SherlockActivity
 
    @Override
    public void onCreate(Bundle savedInstanceState){
-      setTheme(R.style.QuranAndroid);
+      setTheme(R.style.Theme_AppCompat);
       super.onCreate(savedInstanceState);
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 

@@ -8,7 +8,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.SparseBooleanArray;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,12 +22,9 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.SubMenu;
+import androidx.fragment.app.Fragment;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.database.BookmarksDBAdapter;
 import com.scalosphere.labs.kquran.ui.QuranActivity;
@@ -34,7 +36,7 @@ import com.scalosphere.labs.kquran.util.QuranSettings;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbsMarkersFragment extends SherlockFragment {
+public abstract class AbsMarkersFragment extends Fragment {
 
    private ListView mListView;
    private ActionMode mMode;
@@ -124,7 +126,7 @@ public abstract class AbsMarkersFragment extends SherlockFragment {
            if (mMode != null)
              mMode.invalidate();
            else
-             mMode = getSherlockActivity().startActionMode(
+             mMode = getActivity().startActionMode(
                  new ModeCallback());
          } else if (mMode != null) {
            mMode.finish();
@@ -202,7 +204,7 @@ public abstract class AbsMarkersFragment extends SherlockFragment {
 
       @Override
       public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-         MenuInflater inflater = getSherlockActivity().getSupportMenuInflater();
+         MenuInflater inflater = getActivity().getMenuInflater();
          inflater.inflate(getContextualMenuId(), menu);
          return true;
       }

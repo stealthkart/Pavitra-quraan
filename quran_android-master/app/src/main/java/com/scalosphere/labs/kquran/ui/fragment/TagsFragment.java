@@ -1,11 +1,12 @@
 package com.scalosphere.labs.kquran.ui.fragment;
 
 import android.app.Activity;
-import android.support.v4.util.LongSparseArray;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.actionbarsherlock.view.ActionMode;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+import androidx.appcompat.view.ActionMode;
+import androidx.collection.LongSparseArray;
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.data.QuranInfo;
@@ -49,13 +50,13 @@ public class TagsFragment extends AbsMarkersFragment {
    protected boolean isValidSelection(QuranRow selected) {
       return selected.isBookmark() || (selected.isBookmarkHeader() && selected.tagId >= 0);
    }
-   
+
    @Override
-   protected boolean prepareActionMode(ActionMode mode, Menu menu, QuranRow[] selected) {
+   protected boolean prepareActionMode(android.view.ActionMode mode, Menu menu, QuranRow[] selected) {
       MenuItem editItem = menu.findItem(R.id.cab_edit_tag);
       MenuItem removeItem = menu.findItem(R.id.cab_delete_tag);
       MenuItem tagItem = menu.findItem(R.id.cab_tag_bookmark);
-      
+
       int headers = 0;
       int bookmarks = 0;
 
@@ -75,33 +76,33 @@ public class TagsFragment extends AbsMarkersFragment {
       tagItem.setVisible(canTag);
       return true;
    }
-   
+
    @Override
-   protected boolean actionItemClicked(ActionMode mode, int menuItemId,
-         QuranActivity activity, QuranRow[] selected) {
+   protected boolean actionItemClicked(android.view.ActionMode mode, int menuItemId, QuranActivity activity, QuranRow[] selected) {
       switch (menuItemId) {
-      case R.id.cab_delete_tag:
-         new RemoveBookmarkTask(true).execute(selected);
-         return true;
-      case R.id.cab_new_tag:
-         activity.addTag();
-         return true;
-      case R.id.cab_edit_tag:
-         if (selected.length == 1) {
-            activity.editTag(selected[0].tagId, selected[0].text);
-         }
-         return true;
-      case R.id.cab_tag_bookmark:
-         long[] ids = new long[selected.length];
-         for (int i = 0; i < selected.length; i++) {
-            ids[i] = selected[i].bookmarkId;
-         }
-         activity.tagBookmarks(ids);
-         return true;
-      default:
-         return false;
+         case R.id.cab_delete_tag:
+            new RemoveBookmarkTask(true).execute(selected);
+            return true;
+         case R.id.cab_new_tag:
+            activity.addTag();
+            return true;
+         case R.id.cab_edit_tag:
+            if (selected.length == 1) {
+               activity.editTag(selected[0].tagId, selected[0].text);
+            }
+            return true;
+         case R.id.cab_tag_bookmark:
+            long[] ids = new long[selected.length];
+            for (int i = 0; i < selected.length; i++) {
+               ids[i] = selected[i].bookmarkId;
+            }
+            activity.tagBookmarks(ids);
+            return true;
+         default:
+            return false;
       }
    }
+
    
    @Override
    protected QuranRow[] getItems(){

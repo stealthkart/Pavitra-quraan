@@ -7,7 +7,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.support.v4.util.LruCache;
+
+
+import androidx.collection.LruCache;
 
 import com.scalosphere.labs.kquran.common.Response;
 import com.scalosphere.labs.kquran.task.AsyncTask;
@@ -55,8 +57,7 @@ public class QuranPageWorker {
              Bitmap bitmap = bitmapDrawable.getBitmap();
              if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                return getBitmapSizeKitkat(bitmap);
-             } else if (Build.VERSION.SDK_INT >=
-                 Build.VERSION_CODES.HONEYCOMB_MR1) {
+             } else {
                  return getBitmapSizeHoneycombMr1(bitmap);
              }
 
@@ -64,7 +65,6 @@ public class QuranPageWorker {
                   bitmap.getRowBytes() + ", height: " +
                   bitmap.getHeight() + ", " + (bitmap.getRowBytes() *
                         bitmap.getHeight()));*/
-             return bitmap.getRowBytes() * bitmap.getHeight();
          }
       };
 

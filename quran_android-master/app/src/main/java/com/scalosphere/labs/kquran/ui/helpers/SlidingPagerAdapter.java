@@ -1,7 +1,9 @@
 package com.scalosphere.labs.kquran.ui.helpers;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.ui.fragment.AyahPlaybackFragment;

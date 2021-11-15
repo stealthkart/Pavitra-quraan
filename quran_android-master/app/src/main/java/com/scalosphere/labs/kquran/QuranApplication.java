@@ -23,10 +23,10 @@ public class QuranApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //Fabric.with(this, new Crashlytics());
-        if (Constants.CRASH_REPORTING_ENABLED) {
-            //TODO enable it with new code mapping scalosphere
-            //Crashlytics.start(this);
-        }
+//        if (Constants.CRASH_REPORTING_ENABLED) {
+//            //TODO enable it with new code mapping scalosphere
+//            //Crashlytics.start(this);
+//        }
         refreshLocale(false);
     }
 

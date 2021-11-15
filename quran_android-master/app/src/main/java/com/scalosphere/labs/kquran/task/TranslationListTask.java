@@ -208,7 +208,7 @@ public class TranslationListTask extends
             long now = today.getTime();
             PreferenceManager.getDefaultSharedPreferences(context)
                     .edit().putLong(Constants.PREF_LAST_UPDATED_TRANSLATIONS,
-                    now).commit();
+                    now).apply();
          }
 
          if (updates.size() > 0){

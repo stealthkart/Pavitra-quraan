@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -25,7 +26,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import androidx.fragment.app.Fragment;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.common.AyahBounds;
 import com.scalosphere.labs.kquran.common.QuranAyah;
@@ -56,7 +59,7 @@ import java.util.Set;
 
 import static com.scalosphere.labs.kquran.ui.helpers.AyahSelectedListener.EventType;
 
-public class QuranPageFragment extends SherlockFragment
+public class QuranPageFragment extends Fragment
     implements AyahTracker, ObservableScrollView.OnScrollListener {
 
   private static final String TAG = "QuranPageFragment";
@@ -81,7 +84,7 @@ public class QuranPageFragment extends SherlockFragment
 
   private Resources mResources;
   private SharedPreferences mPrefs;
-  private Handler mHandler = new Handler();
+  private Handler mHandler = new Handler(Looper.getMainLooper());
 
   public static QuranPageFragment newInstance(int page) {
     final QuranPageFragment f = new QuranPageFragment();

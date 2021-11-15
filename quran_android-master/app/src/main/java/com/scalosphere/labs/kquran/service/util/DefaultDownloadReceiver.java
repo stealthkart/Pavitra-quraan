@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 
 import com.scalosphere.labs.kquran.R;
@@ -54,7 +55,7 @@ public class DefaultDownloadReceiver extends BroadcastReceiver {
       mHandler.sendMessageAtFrontOfQueue(msg);
    }
 
-   private Handler mHandler = new Handler(){
+   private Handler mHandler = new Handler(Looper.getMainLooper()){
       @Override
       public void handleMessage(Message msg){
          if (mListener == null){ return; }

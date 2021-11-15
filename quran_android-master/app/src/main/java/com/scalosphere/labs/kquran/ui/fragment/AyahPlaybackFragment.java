@@ -93,14 +93,11 @@ public class AyahPlaybackFragment extends AyahActionFragment {
     return view;
   }
 
-  private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-      switch (v.getId()) {
-        case R.id.apply: {
-          apply();
-          break;
-        }
+  private View.OnClickListener mOnClickListener = v -> {
+    switch (v.getId()) {
+      case R.id.apply: {
+        apply();
+        break;
       }
     }
   };

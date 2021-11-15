@@ -15,7 +15,7 @@ public class AudioRequest implements Serializable {
    private static final long serialVersionUID = 1L;
    private static final String TAG = "AudioRequest";
 
-   private String mBaseUrl = null;
+   private String mBaseUrl;
    private String mGaplessDatabasePath = null;
 
    // where we started from

@@ -39,12 +39,15 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.LocalBroadcastManager;
+
 import android.util.Log;
 import android.util.SparseIntArray;
+
+import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.common.QuranAyah;
@@ -223,7 +226,7 @@ public class AudioService extends Service implements OnCompletionListener,
 
    public static final int MSG_START_AUDIO = 1;
    public static final int MSG_UPDATE_AUDIO_POS = 2;
-   private Handler mHandler = new Handler(){
+   private Handler mHandler = new Handler(Looper.getMainLooper()){
       @Override
       public void handleMessage(Message msg){
          if (msg == null){ return; }
@@ -268,21 +271,17 @@ public class AudioService extends Service implements OnCompletionListener,
    public void onCreate() {
       //Log.i(TAG, "debug: Creating service");
 
-      mWifiLock = ((WifiManager) getSystemService(Context.WIFI_SERVICE))
+      mWifiLock = ((WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE))
             .createWifiLock(WifiManager.WIFI_MODE_FULL, "audiolock");
       mNotificationManager = (NotificationManager)
               getSystemService(NOTIFICATION_SERVICE);
       mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
       // create the Audio Focus Helper, if the Audio Focus feature is available
-      if (android.os.Build.VERSION.SDK_INT >= 8){
-         mAudioFocusHelper = new AudioFocusHelper(
-                 getApplicationContext(), this);
-      }
-      // no focus feature, so we always "have" audio focus
-      else { mAudioFocus = AudioFocus.Focused; }
+       mAudioFocusHelper = new AudioFocusHelper(
+               getApplicationContext(), this);
 
-      mMediaButtonReceiverComponent = new ComponentName(
+       mMediaButtonReceiverComponent = new ComponentName(
               this, AudioIntentReceiver.class);
       mNotificationName = getString(R.string.app_name);
 

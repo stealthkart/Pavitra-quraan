@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -18,7 +18,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.actionbarsherlock.app.SherlockDialogFragment;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+
+
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.data.QuranInfo;
@@ -26,7 +29,7 @@ import com.scalosphere.labs.kquran.ui.PagerActivity;
 import com.scalosphere.labs.kquran.ui.QuranActivity;
 import com.scalosphere.labs.kquran.util.QuranUtils;
 
-public class JumpFragment extends SherlockDialogFragment {
+public class JumpFragment extends DialogFragment {
     public static final String TAG = "JumpFragment";
 
     public JumpFragment(){

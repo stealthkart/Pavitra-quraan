@@ -3,16 +3,17 @@ package com.scalosphere.labs.kquran;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuItem;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class AboutUsActivity extends SherlockActivity {
+
+public class AboutUsActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.QuranAndroid);
+        setTheme(R.style.Theme_AppCompat);
         super.onCreate(savedInstanceState);
 
         final ActionBar actionBar = getSupportActionBar();

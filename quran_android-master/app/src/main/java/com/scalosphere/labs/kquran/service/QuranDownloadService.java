@@ -19,7 +19,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.StatFs;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
+
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +28,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.scalosphere.labs.kquran.QuranDataActivity;
 import com.scalosphere.labs.kquran.R;
@@ -211,7 +213,7 @@ public class QuranDownloadService extends Service {
       HandlerThread thread = new HandlerThread(TAG);
       thread.start();
       
-      mWifiLock = ((WifiManager) getSystemService(Context.WIFI_SERVICE))
+      mWifiLock = ((WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE))
             .createWifiLock(WifiManager.WIFI_MODE_FULL, "downloadLock");
       
       mServiceLooper = thread.getLooper();
@@ -229,7 +231,7 @@ public class QuranDownloadService extends Service {
       
       // work around connection reuse bug in froyo
       // android-developers.blogspot.com/2011/09/androids-http-clients.html
-      if (Integer.parseInt(Build.VERSION.SDK) < Build.VERSION_CODES.FROYO) {
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.FROYO) {
          System.setProperty("http.keepAlive", "false");
      }
    }
@@ -351,7 +353,7 @@ public class QuranDownloadService extends Service {
        Log.i(TAG, "done checking translations - " +
               (needsUpgrade? "" : "no ") + "upgrade needed");*/
       mSharedPreferences.edit().putBoolean(
-              Constants.PREF_HAVE_UPDATED_TRANSLATIONS, needsUpgrade).commit();
+              Constants.PREF_HAVE_UPDATED_TRANSLATIONS, needsUpgrade).apply();
 
    }
    
@@ -835,7 +837,7 @@ public class QuranDownloadService extends Service {
    protected boolean isSpaceAvailable(long downloaded,
                                       long fileLength, boolean isZipFile){
       StatFs fsStats = new StatFs(
-            Environment.getExternalStorageDirectory().getAbsolutePath());
+            getApplicationContext().getFilesDir().getAbsolutePath());
       double availableSpace = (double)fsStats.getAvailableBlocks() *
             (double)fsStats.getBlockSize();
       
@@ -966,7 +968,7 @@ public class QuranDownloadService extends Service {
          mSharedPreferences.edit()
          .putString(PREF_LAST_DOWNLOAD_ITEM, details.key)
          .putInt(PREF_LAST_DOWNLOAD_ERROR, errorCode)
-         .commit();
+         .apply();
       }
       
       String state = isFatal? STATE_ERROR : STATE_ERROR_WILL_RETRY;
@@ -985,16 +987,10 @@ public class QuranDownloadService extends Service {
    private void showNotification(String titleString,
          String statusString, int notificationId, boolean isOnGoing,
          int maximum, int progress, boolean isIndeterminate){
-      
-      if (Build.VERSION.SDK_INT < 9){
-         if (mNotificationTitleColor == null){
-            computeNotificationStyles();
-         }
-      }
-      
+
       // we recreate the notification each time to work around
       // http://code.google.com/p/android/issues/detail?id=13941
-      Notification notification = new Notification(R.drawable.icon,
+      Notification notification = new   Notification(R.drawable.icon,
             titleString, System.currentTimeMillis());
       notification.flags |= Notification.FLAG_AUTO_CANCEL;
       if (isOnGoing){
@@ -1043,7 +1039,7 @@ public class QuranDownloadService extends Service {
    private void computeNotificationStyles(){
        Log.i("test","test------------------------------");
       Notification notification = new Notification();
-      notification.setLatestEventInfo(this, "title", "text", null);
+//      notification.setLatestEventInfo(this, "title", "text", null);
       
       try {
          LinearLayout group = new LinearLayout(this);

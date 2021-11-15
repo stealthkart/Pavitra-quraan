@@ -20,21 +20,23 @@ package com.scalosphere.labs.kquran.ui.helpers;
  * - added getFragmentIfExists() to return a fragment without recreating it
  */
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
+
 import java.util.ArrayList;
 
 /**
- * Implementation of {@link android.support.v4.view.PagerAdapter} that
- * uses a {@link Fragment} to manage each page. This class also handles
+ * Implementation of {@link } that
+ * uses a {@link } to manage each page. This class also handles
  * saving and restoring of fragment's state.
  *
  * <p>This version of the pager is more useful when there are a large number
@@ -42,14 +44,14 @@ import java.util.ArrayList;
  * the user, their entire fragment may be destroyed, only keeping the saved
  * state of that fragment.  This allows the pager to hold on to much less
  * memory associated with each visited page as compared to
- * {@link android.support.v4.app.FragmentPagerAdapter} at the cost of
+ * {@link } at the cost of
  * potentially more overhead when switching between pages.
  *
  * <p>When using FragmentPagerAdapter the host ViewPager must have a
  * valid ID set.</p>
  *
  * <p>Subclasses only need to implement {@link #getItem(int)}
- * and {@link #getCount()} to have a working adapter.
+ * and {@link #()} to have a working adapter.
  *
  * <p>Here is an example implementation of a pager containing fragments of
  * lists:
@@ -108,6 +110,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
       return null;
    }
 
+   @SuppressLint("LongLogTag")
    @Override
    public Object instantiateItem(ViewGroup container, int position) {
       // If we already have this item instantiated, there is nothing
@@ -146,6 +149,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
       return fragment;
    }
 
+   @SuppressLint("LongLogTag")
    @Override
    public void destroyItem(ViewGroup container, int position, Object object) {
       Fragment fragment = (Fragment)object;
@@ -231,6 +235,7 @@ public abstract class FragmentStatePagerAdapter extends PagerAdapter {
       return state;
    }
 
+   @SuppressLint("LongLogTag")
    @Override
    public void restoreState(Parcelable state, ClassLoader loader) {
       if (state != null) {
