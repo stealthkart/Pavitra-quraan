@@ -1,66 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu  xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/search"
         android:icon="@drawable/ic_ab_search"
         android:title="@string/menu_search"
-        android:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/goto_translation"
         android:icon="@drawable/ic_translation"
         android:title="@string/menu_translation"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/goto_quran"
         android:icon="@drawable/ic_goto_quran"
         android:title="@string/menu_back_to_page"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
 
     <item android:id="@+id/goto_kannada"
         android:icon="@drawable/kannada"
         android:title="@string/menu_kannada"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/foot_notes"
         android:icon="@drawable/footnotes"
         android:title="@string/foot_notes"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/favorite_item"
           android:icon="@drawable/favorite"
           android:title="@string/menu_bookmarks"
-          android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
 
     <item android:id="@+id/change_text_size"
         android:icon="@drawable/font_size"
         android:title="@string/text_size"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/font_menu"
         android:title="@string/font_menu"
-        android:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/sort"
         android:icon="@drawable/ic_sort"
         android:title="@string/menu_sort"
         android:visible="false"
         android:enabled="false"
-        android:showAsAction="ifRoom" >
+        app:showAsAction="ifRoom">
         <menu>
             <item android:id="@+id/sort_date"
                 android:title="@string/menu_sort_date"
-                android:showAsAction="withText" />
+                app:showAsAction="withText" />
             <item android:id="@+id/sort_location"
                 android:title="@string/menu_sort_location"
                 android:visible="false"
                 android:enabled="false"
-                android:showAsAction="withText" />
+                app:showAsAction="withText" />
             <item android:id="@+id/sort_alphabetical"
                 android:title="@string/menu_sort_alphabetical"
                 android:visible="false"
                 android:enabled="false"
-                android:showAsAction="withText" />
+                app:showAsAction="withText" />
         </menu>
     </item>
 
@@ -68,22 +69,22 @@
         android:checkable="true"
         android:icon="@drawable/ic_brightness"
         android:title="@string/prefs_night_mode_title"
-        android:showAsAction="ifRoom"
-        android:visible="false" />
+        android:visible="false"
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/jump"
           android:title="@string/menu_jump"
-          android:showAsAction="never" />
+        app:showAsAction="never" />
 
 
     <item android:id="@+id/settings"
           android:icon="@drawable/ic_action_settings"
           android:title="@string/menu_settings"
-          android:showAsAction="ifRoom"
-          android:visible="false" />
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 
     <item android:id="@+id/help"
           android:title="@string/menu_help"
-          android:showAsAction="never"
-          android:visible="false"/>
+        android:visible="false"
+        app:showAsAction="never" />
 
 </menu>

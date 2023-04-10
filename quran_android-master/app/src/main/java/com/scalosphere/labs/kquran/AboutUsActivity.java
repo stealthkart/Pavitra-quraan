@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AboutUsActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_AppCompat);
+        setTheme(R.style.QuranAndroid );
         super.onCreate(savedInstanceState);
 
         final ActionBar actionBar = getSupportActionBar();

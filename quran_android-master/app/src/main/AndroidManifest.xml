@@ -18,11 +18,15 @@
    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-   <application android:icon="@drawable/icon" android:label="@string/app_name"
+   <application android:icon="@drawable/icon"
+                android:roundIcon="@drawable/icon"
+                android:label="@string/app_name"
                 android:name="com.scalosphere.labs.kquran.QuranApplication"
                 android:requestLegacyExternalStorage="true"
                 android:usesCleartextTraffic="true"
-                android:allowBackup="true">
+                android:allowBackup="true"
+                android:theme="@style/Theme.AppCompat"
+       >
 		<activity android:name="com.scalosphere.labs.kquran.QuranDataActivity"
 			android:configChanges="keyboardHidden|orientation"
 			android:screenOrientation="portrait">
@@ -38,7 +42,7 @@
 		<activity android:name="com.scalosphere.labs.kquran.AboutUsActivity" />
 		<activity android:name="com.scalosphere.labs.kquran.HelpActivity" />
 		<activity android:name="com.scalosphere.labs.kquran.ui.PagerActivity"
-		          android:launchMode="singleTop" />
+		          android:launchMode="singleTop"  />
         <activity android:name="com.scalosphere.labs.kquran.ui.TranslationManagerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 		<activity android:name="com.scalosphere.labs.kquran.QuranPreferenceActivity"

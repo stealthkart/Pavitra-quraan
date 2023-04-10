@@ -97,7 +97,7 @@ public class QuranActivity extends AppCompatActivity
       ((QuranApplication)getApplication()).refreshLocale(false);
       sharedContext = getApplicationContext();
 
-      setTheme(R.style.Theme_AppCompat);
+      setTheme(R.style.QuranAndroid);
       super.onCreate(savedInstanceState);
       setContentView(R.layout.quran_index);
 

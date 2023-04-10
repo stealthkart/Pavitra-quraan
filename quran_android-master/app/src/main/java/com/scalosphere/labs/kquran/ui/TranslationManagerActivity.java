@@ -66,7 +66,7 @@ public class TranslationManagerActivity extends AppCompatActivity
 
    @Override
    public void onCreate(Bundle savedInstanceState){
-      setTheme(R.style.Theme_AppCompat);
+      setTheme(R.style.QuranAndroid);
       super.onCreate(savedInstanceState);
       requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 

@@ -57,7 +57,7 @@ public class QuranPreferenceActivity extends PreferenceActivity
   protected void onCreate(Bundle savedInstanceState) {
     ((QuranApplication)getApplication()).refreshLocale(false);
 
-    setTheme(R.style.Theme_AppCompat);
+    setTheme(R.style.QuranAndroid );
     super.onCreate(savedInstanceState);
 
 

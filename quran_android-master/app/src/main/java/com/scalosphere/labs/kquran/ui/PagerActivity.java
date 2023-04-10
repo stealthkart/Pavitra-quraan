@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -42,7 +41,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
@@ -219,11 +217,14 @@ public class PagerActivity extends AppCompatActivity implements
 
     @Override
   public void onCreate(Bundle savedInstanceState) {
+      Log.i(TAG, "1. local(kquraan/db) TextVersion  is azhar");
     ((QuranApplication) getApplication()).refreshLocale(false);
 
-    setTheme(R.style.Theme_AppCompat);
-    requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-    requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+   // setTheme(R.style.Base_V7_Theme_AppCompat_Light);
+    setTheme(R.style.QuranAndroid);
+
+    supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  //  supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
     super.onCreate(savedInstanceState);
     mBookmarksCache = new SparseBooleanArray();
@@ -297,7 +298,7 @@ public class PagerActivity extends AppCompatActivity implements
     final Resources resources = getResources();
     mIsLandscape = resources.getConfiguration().orientation ==
         Configuration.ORIENTATION_LANDSCAPE;
-    int background = resources.getColor(R.color.transparent_actionbar_color);
+    int background = getColor(R.color.transparent_actionbar_color);
     mAyahToolBarTotalHeight = resources
         .getDimensionPixelSize(R.dimen.toolbar_total_height);
     setContentView(R.layout.quran_page_activity_slider);
@@ -340,7 +341,7 @@ public class PagerActivity extends AppCompatActivity implements
     mViewPager.setAdapter(mPagerAdapter);
 
     mAyahToolBar.setOnItemSelectedListener(new AyahMenuItemSelectionHandler());
-    mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+    mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
 
       @Override
@@ -443,7 +444,7 @@ public class PagerActivity extends AppCompatActivity implements
           return;
         }
       } else if (current == Configuration.ORIENTATION_LANDSCAPE) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         return;
       }
     }
@@ -920,6 +921,9 @@ public class PagerActivity extends AppCompatActivity implements
     super.onCreateOptionsMenu(menu);
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.quran_menu, menu);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+   // getSupportActionBar().setLogo(R.drawable.ic_goto_quran);
+    getSupportActionBar().setDisplayUseLogoEnabled(true);
     return true;
   }
 

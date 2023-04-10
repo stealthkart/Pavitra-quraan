@@ -64,7 +64,7 @@ public class SearchActivity extends FragmentActivity
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    setTheme(R.style.Theme_AppCompat);
+    setTheme(R.style.QuranAndroid);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.search);
     mMessageView = (TextView) findViewById(R.id.search_area);

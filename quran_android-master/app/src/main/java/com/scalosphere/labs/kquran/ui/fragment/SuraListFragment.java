@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.scalosphere.labs.kquran.QuranApplication;
 import com.scalosphere.labs.kquran.R;
 import com.scalosphere.labs.kquran.data.Constants;
 import com.scalosphere.labs.kquran.data.QuranInfo;
+import com.scalosphere.labs.kquran.database.BookmarksDBAdapter;
 import com.scalosphere.labs.kquran.ui.QuranActivity;
 import com.scalosphere.labs.kquran.ui.helpers.QuranListAdapter;
 import com.scalosphere.labs.kquran.ui.helpers.QuranRow;
@@ -96,6 +98,8 @@ public class  SuraListFragment extends Fragment {
     int sura = 1;
     int next = 1;
     QuranRow[] elements = new QuranRow[Constants.SURAS_COUNT + Constants.JUZ2_COUNT];
+
+    Log.e("Hi---->", "elements size"+elements.length);
 
     Activity activity = getActivity();
     for (int juz = 1; juz <= Constants.JUZ2_COUNT; juz++) {

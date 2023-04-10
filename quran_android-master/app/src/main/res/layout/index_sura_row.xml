@@ -6,17 +6,18 @@
     android:orientation="horizontal" >
     <!-- android:background="?android:attr/activatedBackgroundIndicator"
     This only works on 3.0+, otherwise a custom RelativeLayout won't be needed -->
-    
-    <TextView android:id="@+id/suraNumber"
-              android:layout_width="34dp"
-              android:layout_height="fill_parent"
-              android:layout_marginLeft="10dp"
-              android:layout_marginRight="20dp"
-              android:layout_alignParentLeft="true"
-              android:layout_centerInParent="true"
-              android:gravity="center"
-              android:textSize="18sp"
-              android:textColor="@color/sura_info_color" />
+
+    <TextView
+        android:id="@+id/suraNumber"
+        android:layout_width="34dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:textColor="@color/sura_info_color"
+        android:textSize="18sp" />
 
     <TextView android:id="@+id/rowIcon"
         android:layout_width="wrap_content"

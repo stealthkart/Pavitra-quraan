@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class HelpActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
-    setTheme(R.style.Theme_AppCompat);
+    setTheme(R.style.QuranAndroid);
     super.onCreate(savedInstanceState);
 
     this.getActionBar().setDisplayShowHomeEnabled(true);

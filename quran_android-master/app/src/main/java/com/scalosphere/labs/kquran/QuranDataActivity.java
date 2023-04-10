@@ -111,12 +111,13 @@ public class QuranDataActivity extends Activity implements
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
    public void onCreate(Bundle savedInstanceState) {
-      setTheme(R.style.Theme_AppCompat_DayNight_NoActionBar);
+        Log.i(TAG,"baseDir is ---------------------------------------------start>");
+      setTheme(R.style.QuranAndroid);
 
       super.onCreate(savedInstanceState);
       setContentView(R.layout.splash_screen);
 
-      mCheckPagesTask= new CheckPagesAsyncTask(this);
+          mCheckPagesTask= new CheckPagesAsyncTask(this);
 
       mSplashView = (QuranMaxImageView)findViewById(R.id.splashview);
        setSplashViewHardwareAcceleratedICS();
@@ -168,11 +169,12 @@ public class QuranDataActivity extends Activity implements
       initializeQuranScreen();
       mSharedPreferences = PreferenceManager
             .getDefaultSharedPreferences(getApplicationContext());
-
+        Log.i(TAG,"baseDir is --------------------------------------------->");
       // one time upgrade to v2.4.3
       if (!mSharedPreferences.contains(Constants.PREF_UPGRADE_TO_243)){
          String baseDir = QuranFileUtils.getQuranBaseDirectory(this);
 
+         Log.i(TAG,"baseDir is --------------------------------------------->"+baseDir);
 
          if (baseDir != null){
 
